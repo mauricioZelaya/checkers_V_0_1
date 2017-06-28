@@ -16,7 +16,7 @@ buildscript {
 }
 
 allprojects {
-    group 'com.jalasoft.Checkers'
+    group 'org.checkers'
     version '1.0-SNAPSHOT'
 }
 

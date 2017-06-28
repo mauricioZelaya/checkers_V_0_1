@@ -1,0 +1,44 @@
+package org.checkers.model.component;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Comparator;
+
+/**
+ * Write a description of class Square here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Square extends AbstractShape {
+    
+    private int side;   
+    
+    public Square(int x, int y) {
+       this.x = x;
+       this.y = y;
+       //this.color = getNextColor();
+       side = 50;
+    }
+    
+    @Override
+    public boolean isInsideShape(int x, int y) {
+       return ((x>=this.x-side/2 && x <= this.x+side/2) && (y>=this.y-side/2 && y <= this.y+side/2));
+    }  
+   
+    //getSide
+    @Override
+    public int getValue() {
+        return side;
+    }
+   
+    @Override
+    public void drawShape(Graphics g) {
+        g.fillRect(x-side/2, y-side/2, side, side);
+    }
+    
+    public void setSide(int side) {
+        this.side = side;
+    }   
+
+}
