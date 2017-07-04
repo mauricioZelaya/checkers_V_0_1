@@ -5,5 +5,6 @@ package org.checkers.core;
  */
 public interface IBoardGamesRules {
     boolean isEmptyTile(int row, int col, int matrix[][]);
-    boolean isValidDirection(int playerChip, int initRow, int initCol, int endRow, int endCol);
+    boolean isValidDirection(int playerChip, int initRow, int endRow);
+    boolean isValidTile(int tileValue);
 }

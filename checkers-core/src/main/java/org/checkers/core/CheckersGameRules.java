@@ -11,25 +11,35 @@ public class CheckersGameRules implements IBoardGamesRules {
     }
 
     @Override
-    public boolean isValidDirection(int playerChip, int initRow, int initCol, int endRow, int endCol) {
+    public boolean isValidDirection(int playerChip, int initRow, int endRow) {
         if(playerChip==1){
-            return toNorth(initRow, initCol, endRow, endCol);
+            return toNorth(initRow, endRow);
         }
         else if(playerChip==2){
-            return toSouth(initRow, initCol, endRow, endCol);
+            return toSouth(initRow, endRow);
         }
         return false;
     }
 
-    private boolean toSouth(int initRow, int initCol, int endRow, int endCol) {
-        if(initRow+1==endRow && (initCol-1==endCol||initCol+1==endCol))
+    @Override
+    public boolean isValidTile(int tileValue) {
+        if(tileValue==0){
             return true;
+        }
         return false;
     }
 
-    private boolean toNorth(int initRow, int initCol, int endRow, int endCol) {
-        if(initRow-1==endRow && (initCol-1==endCol||initCol+1==endCol))
+    private boolean toSouth(int initRow, int endRow) {
+        if(initRow>endRow) {
             return true;
+        }
+        return false;
+    }
+
+    private boolean toNorth(int initRow, int endRow) {
+        if(initRow<endRow) {
+            return true;
+        }
         return false;
     }
 }
