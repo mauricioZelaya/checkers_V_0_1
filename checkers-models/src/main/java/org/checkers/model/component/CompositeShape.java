@@ -1,7 +1,8 @@
 package org.checkers.model.component;
 
-import java.util.*;
+import java.util.Vector;
 import java.awt.Graphics;
+import java.awt.Color;
 /**
  * Write a description of class CompositeShape here.
  *
@@ -10,12 +11,12 @@ import java.awt.Graphics;
  */
 public class CompositeShape extends AbstractShape {
 
-    protected Collection<AbstractShape> elements;
-    
+    protected Vector<AbstractShape> elements;
+
     public CompositeShape(){
         elements = new Vector<AbstractShape>();
     }
-        
+
     @Override //recheck logic for container check
     public boolean isInsideShape(int x, int y){
         for(AbstractShape element:elements) {
@@ -25,24 +26,32 @@ public class CompositeShape extends AbstractShape {
         }
         return false;
     }
-    
+
     @Override
     public int getValue(){
         return 0;
     }
-    
+
+    @Override
+    public void setValue(int value) {
+    }
+
     @Override
     public void drawShape(Graphics g){
         for(AbstractShape element:elements) {
             element.draw(g);
         }
     }
-    
-    @Override //has container check. need to think that we have +1 objects on a composite, for the container as well
-    public void setState(int state) {
+
+    @Override
+    public void setAllShapeProperties(int x, int y) {
         for(AbstractShape element:elements) {
-            element.setState(state);
+            element.setX(x);
+            element.setY(y);
         }
-        this.state = state;
+    }
+
+    @Override
+    public void toggleState() {
     }
 }
