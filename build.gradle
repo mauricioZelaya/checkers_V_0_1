@@ -54,7 +54,7 @@ subprojects {
         reports {
             xml.enabled false
             html.enabled true
-            html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
+            //html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
         }
     }
 
@@ -62,7 +62,7 @@ subprojects {
         reports {
             xml.enabled false
             html.enabled true
-            resources.text.fromFile('config/checkstyle/checkstyle.xml')
+            //resources.text.fromFile('config/checkstyle/checkstyle.xml')
         }
     }
 
@@ -82,5 +82,9 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: '4.+'
     }
 
+    checkstyle {
+        toolVersion = "8.0"
+        config = rootProject.resources.text.fromFile("config/checkstyle/checkstyle.xml")
+    }
 
 }
