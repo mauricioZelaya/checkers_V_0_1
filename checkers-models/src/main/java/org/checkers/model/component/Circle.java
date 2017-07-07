@@ -14,9 +14,7 @@ public class Circle extends AbstractShape {
     protected int radius;
 
     public Circle(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.color = Color.blue;//getNextColor();
+        super(x, y);
         radius = 25;
     }
 
@@ -24,8 +22,8 @@ public class Circle extends AbstractShape {
     public boolean isInsideShape(int x, int y) {
         int xCenter = this.x;
         int yCenter = this.y;
-        double d = Math.hypot(yCenter - y, xCenter - x);
-        return (d <= radius);
+        double d = StrictMath.hypot(yCenter - y, xCenter - x);
+        return d <= radius;
     }
 
     //getRadius

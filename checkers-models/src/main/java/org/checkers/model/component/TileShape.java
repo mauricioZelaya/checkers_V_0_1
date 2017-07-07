@@ -1,20 +1,18 @@
 package org.checkers.model.component;
 
 /**
- * Write a description of class Tile here.
+ * A Composite container which defines the drawable shapes for a Tile of the Checkers Board.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Done in class, extended some to adapt to Checkers game)
+ * @version (July 2017)
  */
 public class TileShape extends CompositeShape
 {
-    private int side;
+  //protected int side;
 
     public TileShape(int x, int y, int side) {
-        super();
-        this.x = x;
-        this.y = y;
-        this.side = side;
+        super(x, y);
+        //this.side = side;
         Square tile = new Square(x, y);
         tile.setValue(side);
 

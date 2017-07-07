@@ -7,15 +7,15 @@ public class Utils
 {
     //Board - starting at 1
     public String coordinatesLiteral(int column, int row) {
-        return(Character.toString((char)(column+64))+Integer.toString(9-row));
+        return Character.toString((char) (column+64))+Integer.toString(9-row);
     }
 
     //Tile - returning from 1
     public int getColumn(String coordinates) {
-        return((int)coordinates.charAt(0)-64);
+        return (int)coordinates.charAt(0)-64;
     }
 
     public int getRow(String coordinates) {
-        return(9-(coordinates.charAt(1)-'0'));
+        return 9- (coordinates.charAt(1)-'0');
     }
 }

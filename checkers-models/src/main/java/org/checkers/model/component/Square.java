@@ -14,15 +14,12 @@ public class Square extends AbstractShape {
     private int side;
 
     public Square(int x, int y) {
-        this.x = x;
-        this.y = y;
-        //this.color = getNextColor();
-        //side = 50;
+        super(x, y);
     }
 
     @Override
     public boolean isInsideShape(int x, int y) {
-        return ((x>=this.x-side/2 && x <= this.x+side/2) && (y>=this.y-side/2 && y <= this.y+side/2));
+        return x>=this.x-side/2 && x <= this.x+side/2 && y>=this.y-side/2 && y <= this.y+side/2;
     }
 
     //getSide

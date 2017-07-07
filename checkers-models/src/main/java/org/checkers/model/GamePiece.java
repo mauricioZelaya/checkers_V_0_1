@@ -20,7 +20,7 @@ public class GamePiece
     }
 
     public AbstractShape getShape() {
-        return(shape);
+        return shape;
     }
 
     public void drawShape(Graphics g){

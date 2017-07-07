@@ -11,10 +11,7 @@ import java.util.Vector;
 public class ChipShape extends CompositeShape {
 
     public ChipShape(int x, int y, int side, Color color) {
-        super();
-        this.x = x;
-        this.y = y;
-        this.color = color;
+        super(x, y, color);
         Circle outer = new Circle(x, y); //border circle
         outer.setColor(color);
         outer.setValue((side-6)/2);
@@ -29,7 +26,7 @@ public class ChipShape extends CompositeShape {
     @Override
     public void toggleState() {
         AbstractShape element;
-        element = elements.firstElement();
-        element.setColor((element.getColor()== color)? Color.green : color);
+        element = elements.get(0);
+        element.setColor(element.getColor()== color ? Color.green : color);
     }
 }

@@ -20,6 +20,17 @@ public abstract class AbstractShape {
     public abstract void setValue(int value);
     public abstract void toggleState();
 
+    protected AbstractShape(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    protected AbstractShape(int x, int y, Color color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+    }
+
     public void draw(Graphics g) {
         g.setColor(color);
         drawShape(g);
@@ -30,7 +41,7 @@ public abstract class AbstractShape {
     }
 
     public Color getColor() {
-        return(color);
+        return color;
     }
 
     public int getX() {

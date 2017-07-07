@@ -11,7 +11,7 @@ public interface InterfaceBoard
     /**
      * Initializes the board with Piece positions as defined by "matrix".
      */
-    void placePieces(int matrix[][]);
+    void placePieces(int[][] matrix);
 
     /**
      * Given "tileCoordinates" it toggles it to selected/deselected.

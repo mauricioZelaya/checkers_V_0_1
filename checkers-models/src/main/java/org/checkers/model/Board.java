@@ -3,7 +3,7 @@ package org.checkers.model;
 import org.checkers.model.component.AbstractShape;
 
 import java.util.Collection;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import java.awt.Graphics;
 import java.awt.Color;
@@ -30,8 +30,8 @@ public class Board implements InterfaceBoard {
         this.tileWidth = tileWidth;
         this.nTileSide = nTileSide;
 
-        tiles = new Vector<Tile>();
-        labels = new Vector<AbstractShape>();
+        tiles = new ArrayList<Tile>();
+        labels = new ArrayList<AbstractShape>();
 
         drawLabels();
         createBoard();
@@ -52,17 +52,18 @@ public class Board implements InterfaceBoard {
     private void drawLabels() {
         Label label;
         for(int i=1; i<=nTileSide; i++) {
-            label = new Label (xOrigin+(tileWidth*i), yOrigin, Character.toString((char)(64+i))); //top
+            label = new Label (xOrigin + tileWidth * i, yOrigin, Character.toString((char)(64+i))); //top
             label.setColor(Color.black);
             labels.add(label);
-            label = new Label (xOrigin, yOrigin+(tileWidth*i), Integer.toString(9-i)); //side
+            label = new Label (xOrigin, yOrigin+tileWidth*i, Integer.toString(9-i)); //side
             label.setColor(Color.black);
             labels.add(label);
         }
     }
 
     //figures out the coordinates, ads a piece to the tile in those coordinates
-    public void placePieces(int matrix[][]) {
+    @Override
+    public void placePieces(int[][] matrix) {
         Tile tile;
         int value;
         for(int row=1; row <= nTileSide; row++) {
@@ -71,7 +72,7 @@ public class Board implements InterfaceBoard {
                 if(value==1 || value==2) {
                     tile = getTileAt(coordinatesLiteral(column, row));
                     //System.out.print(String.format("Tile [%s]",tile.getCoordinates()));
-                    tile.createGamePiece(((value==1)? cPlayer1 : cPlayer2));
+                    tile.createGamePiece((value == 1) ? cPlayer1 : cPlayer2);
                 }
             }
             //System.out.println();
@@ -81,40 +82,44 @@ public class Board implements InterfaceBoard {
     private Tile getTileAt(String tileCoordinates) {
         for(Tile tile:tiles) {
             if(tile.getCoordinates().equals(tileCoordinates)) {
-                return(tile);
+                return tile;
             }
         }
-        return(null); //error
+        return null; //error
     }
 
     private String coordinatesLiteral(int column, int row) {
-        return(Character.toString((char)(column+64))+Integer.toString(9-row));
+        return Character.toString((char) (column+64))+Integer.toString(9-row);
     }
 
+    @Override
     public void toggleGamePieceState(String tileCoordinates) {
         getTileAt(tileCoordinates).getGamePiece().getShape().toggleState();
     }
 
+    @Override
     public void moveGamePiece(String fromTile, String toTile, String capturePieceAtTile) {
         GamePiece movingPiece;
         movingPiece = getTileAt(fromTile).takeGamePiece();
         getTileAt(toTile).putGamePiece(movingPiece, Color.green);
-        if(!capturePieceAtTile.equals("")) {
+        if(!"".equals(capturePieceAtTile)) {
             getTileAt(capturePieceAtTile).takeGamePiece();
         }
     }
 
+    @Override
     public Boolean clickIsInsideBoard(int x, int y) {
-        int xBottom = xOrigin + (tileWidth * nTileSide);
-        int yBottom = yOrigin + (tileWidth * nTileSide);
-        return((x >= xOrigin && x <= xBottom) && (y >= yOrigin && y <= yBottom));
+        int xBottom = xOrigin + tileWidth * nTileSide;
+        int yBottom = yOrigin + tileWidth * nTileSide;
+        return x >= xOrigin && x <= xBottom && y >= yOrigin && y <= yBottom;
     }
 
     //gets physical coordinates XY and checks where they belong and returns the ColRow coordinates of the tile
+    @Override
     public String getCoordinatesAtXY(int x, int y) {
         for(Tile tile:tiles) {
             if(tile.isInsideTile(x,y)) {
-                return(tile.getCoordinates());
+                return tile.getCoordinates();
             }
         }
         return "";

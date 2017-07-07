@@ -16,15 +16,16 @@ public class Label extends AbstractShape {
     private String label;
 
     public Label(int x, int y, String text){
-        this.x=x;
-        this.y=y;
+        super(x, y);
         this.label = text;
     }
 
+    @Override
     public boolean isInsideShape(int x, int y){
         return false;
     }
 
+    @Override
     public void drawShape(Graphics g){
         FontMetrics fm = g.getFontMetrics();
         int xText;

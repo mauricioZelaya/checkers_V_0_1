@@ -3,8 +3,8 @@ package org.checkers.model;
 import org.checkers.model.component.AbstractShape;
 import org.checkers.model.component.TileShape;
 
-import java.util.Collection;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Graphics;
 import java.awt.Color;
 
@@ -16,7 +16,7 @@ import java.awt.Color;
  */
 public class Tile
 {
-    private Vector<GamePiece> pieces;
+    private List<GamePiece> pieces;
     private String coordinates; //format: "columnRow", like "A8"
     private AbstractShape shape; //tile color, bottom of the GamePiece vertical
     private int xOrigin;
@@ -28,10 +28,11 @@ public class Tile
         this.xOrigin = xOrigin;
         this.yOrigin = yOrigin;
         this.tileWidth = tileWidth;
-        pieces = new Vector<GamePiece>();
+        pieces = new ArrayList<GamePiece>();
+
 
         shape = new TileShape(getRealX(), getRealY(), tileWidth);
-        shape.setColor(((getColumn()+getRow())%2 == 0)? Color.white:Color.black);
+        shape.setColor((getColumn()+getRow()) % 2 == 0 ? Color.white : Color.black);
     }
 
     //the GamePieces are created during board setup initialization (rest assume the gamepiece exists on the tile)
@@ -42,7 +43,7 @@ public class Tile
 
     //just return reference of the gamepiece on the tile for processing
     public GamePiece getGamePiece() {
-        return(pieces.firstElement());
+        return pieces.get(0);
     }
 
     //a taken Piece is put back into a new tile... needs to get values from tile
@@ -55,7 +56,7 @@ public class Tile
     public GamePiece takeGamePiece() {
         /*GamePiece pieceTaken = pieces.remove(0);
         return(pieceTaken);*/
-        return(pieces.remove(0));
+        return pieces.remove(0);
     }
 
     //local draw not an override
@@ -67,34 +68,34 @@ public class Tile
     }
 
     public AbstractShape getShape() {
-        return(shape);
+        return shape;
     }
 
-    public int getColumn() {
-        return((int)coordinates.charAt(0)-64);
+    private int getColumn() {
+        return (int)coordinates.charAt(0)-64;
     }
 
-    public int getRow() {
-        return(9-(coordinates.charAt(1)-'0'));
+    private int getRow() {
+        return 9- (coordinates.charAt(1)-'0');
     }
 
-    public int getRealX() {
-        return(xOrigin+getColumn()*tileWidth);
+    private int getRealX() {
+        return xOrigin+getColumn()*tileWidth;
     }
 
-    public int getRealY() {
-        return(yOrigin+getRow()*tileWidth);
+    private int getRealY() {
+        return yOrigin+getRow()*tileWidth;
     }
 
     public String getCoordinates() {
-        return(coordinates);
+        return coordinates;
     }
 
     public Boolean isInsideTile(int x, int y) {
-        return(shape.isInsideShape(x, y));
+        return shape.isInsideShape(x, y);
     }
 
     public Boolean hasGamePiece() {
-        return(pieces.size() > 0);
+        return !pieces.isEmpty();
     }
 }
