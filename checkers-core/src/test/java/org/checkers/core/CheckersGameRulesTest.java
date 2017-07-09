@@ -69,4 +69,22 @@ public class CheckersGameRulesTest {
         assertFalse(checkerGame.isValidTile(9));
     }
 
+    @Test
+    public void crownToTheChip(){
+        int playerNumber = 2;
+        int row = 0;
+        assertTrue(checkerGame.crownedChip(playerNumber, row));
+    }
+
+    @Test
+    public void aChipIsEatableByOpponent(){
+        int row = 5;
+        int col = 2;
+        int firstMatrix[][] = new int[8][8];
+        firstMatrix[5][2] = 1;
+        firstMatrix[4][3] = 2;
+        firstMatrix[3][4] = 0;
+        assertTrue(checkerGame.killOpponent(row, col, firstMatrix));
+    }
+
 }
