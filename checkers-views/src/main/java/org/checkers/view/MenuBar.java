@@ -7,7 +7,7 @@ import javax.swing.JMenuItem;
 import org.checkers.view.util.MenuItem;
 
 /**
- * Menus and Items are declared and constructed using this class.
+ * MenuBar view loads all Menus and MenuItems declared declared on this class.
  */
 public class MenuBar {
 
@@ -44,6 +44,7 @@ public class MenuBar {
     exitMenuItem = new JMenuItem(MenuItem.FILE_EXIT_GAME);
 
     // Add menu items to FileMenu object
+    fileMenu.add(newMenuItem);
     fileMenu.add(saveMenuItem);
     fileMenu.add(loadMenuItem);
     fileMenu.add(saveReplayMenuItem);

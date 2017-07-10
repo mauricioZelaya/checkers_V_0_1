@@ -21,7 +21,7 @@ public final class MenuItem {
    An object or class references the constants using MenuItem.FILE_NEW_GAME, and so on.
    Thus, the contructor is delared as private to prevent any construction call.
   */
-  private MenuItem(){
+  private MenuItem() {
     // Following line prevents even the native class from calling this constructor as well.
     throw new AssertionError();
   }
