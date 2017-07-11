@@ -1,7 +1,7 @@
 package org.checkers.core;
 
 /**
- * Created by Administrator on 7/4/2017.
+ * Created by Mauricio Zelaya on 7/4/2017.
  */
 public interface IBoardGamesRules {
     boolean isEmptyTile(int row, int col, int matrix[][]);
