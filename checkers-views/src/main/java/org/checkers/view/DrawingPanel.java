@@ -8,14 +8,22 @@ import java.awt.Graphics;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 /**
  * Write a description of class DrawingPanel here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class DrawingPanel extends JPanel{
+public class DrawingPanel extends JPanel {
+
+    private int[][] boardTest = {{9, 2, 9, 2, 9, 2, 9, 2},
+            {2, 9, 2, 9, 2, 9, 2, 9},
+            {9, 2, 9, 2, 9, 2, 9, 2},
+            {0, 9, 0, 9, 0, 9, 0, 9},
+            {9, 0, 9, 0, 9, 0, 9, 0},
+            {1, 9, 1, 9, 1, 9, 1, 9},
+            {9, 1, 9, 1, 9, 1, 9, 1},
+            {1, 9, 1, 9, 1, 9, 1, 9}};
 
     private Board board;
     private int xLast=0;
@@ -23,65 +31,51 @@ public class DrawingPanel extends JPanel{
     private String fromXY="";
     private String toXY="";
     private int moveCycle = 0;
-    
+
     public DrawingPanel(){
+        setBackground(Color.GRAY);
+        board = new Board(50, 50, 50, 8);
+        board.placePieces(boardTest);
 
-        board = new Board();
-
-        setBackground(Color.GRAY);        
-        
-        addNewBoard();
-        
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
-
-                //simulation of move / logic should be on model
-                if(fromXY=="") {
-                    fromXY = board.clickIsOnTileXY(event.getX(), event.getY());
-                    board.toggleChip(fromXY);
-                }
-                else
-                    if(toXY=="") {
-                        toXY = board.clickIsOnTileXY(event.getX(), event.getY());
-                    }
-                System.out.println(String.format("[%s] m [%s]", fromXY, toXY));
-                if(fromXY==toXY) {
-                    board.toggleChip(fromXY);
-                    fromXY = "";
-                    toXY = "";
-                }
-                else 
-                    if(fromXY!=toXY && toXY !="") {
-                        board.toggleChip(fromXY);
-                        board.hideChip(fromXY);
-                        board.showChip(toXY);
-                        fromXY = "";
-                        toXY = "";
-                    }                
-                repaint();
+                movePiece(event.getX(), event.getY());
             }
         });
     }
-    
-    private void addNewBoard() {
-        board = new Board();
-    }
 
-    private boolean clickIsInsideAnyShape (MouseEvent event) {
-        boolean isInsideAnyShape = false;
-            if(board.isInsideShape(event.getX(), event.getY())) {
-                isInsideAnyShape = true;
+    public void movePiece(int mouseX, int mouseY) {
+        if(fromXY.equals("")) {
+            fromXY = board.getCoordinatesAtXY(mouseX, mouseY);
+            board.toggleGamePieceState(fromXY);
+        }
+        else {
+            if(toXY.equals("")) {
+                toXY = board.getCoordinatesAtXY(mouseX, mouseY);
             }
-        return isInsideAnyShape;
-    } 
+        }
+        //System.out.println(String.format("[%s] m [%s]", fromXY, toXY));
+        if(fromXY.equals(toXY)) {
+            board.toggleGamePieceState(fromXY);
+            fromXY = "";
+            toXY = "";
+        }
+        else {
+            if(!fromXY.equals(toXY) && !toXY.equals("")) {
+                board.toggleGamePieceState(fromXY);
+                board.moveGamePiece(fromXY, toXY, "");
+                fromXY = "";
+                toXY = "";
+            }
+        }
+        //System.out.println(String.format("Mouse [%s] m [%s]", fromXY, toXY));
+        repaint();
+    }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        board.draw(g);
-
+        board.drawShape(g);
     }
 }
-
-
