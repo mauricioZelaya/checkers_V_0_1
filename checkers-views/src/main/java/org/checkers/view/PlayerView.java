@@ -15,10 +15,10 @@ public class PlayerView extends JPanel {
   private JLabel codeLabel = new JLabel("Player: ");
   private JLabel isTurnLabel = new JLabel("Is my turn?");
 
-  private JLabel playerNameResponse = new JLabel("test");
-  private JLabel chipsResponse = new JLabel("test");
-  private JLabel codeResponse = new JLabel("test");
-  private JLabel isTurnResponse = new JLabel("test");
+  private JLabel playerNameResponse = new JLabel("");
+  private JLabel chipsResponse = new JLabel("");
+  private JLabel codeResponse = new JLabel("");
+  private JLabel isTurnResponse = new JLabel("");
 
 
   //Player2
@@ -27,10 +27,10 @@ public class PlayerView extends JPanel {
   private JLabel codeLabel2 = new JLabel("Player: ");
   private JLabel isTurnLabel2 = new JLabel("Is my turn?");
 
-  private JLabel playerNameResponse2 = new JLabel("test2");
-  private JLabel chipsResponse2 = new JLabel("test2");
-  private JLabel codeResponse2 = new JLabel("test2");
-  private JLabel isTurnResponse2 = new JLabel("test2");
+  private JLabel playerNameResponse2 = new JLabel("");
+  private JLabel chipsResponse2 = new JLabel("");
+  private JLabel codeResponse2 = new JLabel("");
+  private JLabel isTurnResponse2 = new JLabel("");
 
 
   public PlayerView() {
@@ -40,10 +40,9 @@ public class PlayerView extends JPanel {
 
     mainContainer.setLayout(new GridBagLayout());
     GridBagConstraints mainPanelFormatting = new GridBagConstraints();
-  mainPanelFormatting.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-  mainPanelFormatting.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    mainPanelFormatting.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+    mainPanelFormatting.fill = java.awt.GridBagConstraints.HORIZONTAL;
 
-  mainPanelFormatting.weightx = 1.0;
     JPanel playerOnePanel = new JPanel(new GridBagLayout());
     JPanel playerTwoPanel = new JPanel(new GridBagLayout());
 
