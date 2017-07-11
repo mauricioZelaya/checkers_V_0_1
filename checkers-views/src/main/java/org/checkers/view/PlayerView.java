@@ -1,7 +1,5 @@
 package org.checkers.view;
-
 import javax.swing.JPanel;
-package org.checkers.view;
 import java.awt.*;
 import javax.swing.*;
 
@@ -17,10 +15,11 @@ public class PlayerView extends JPanel {
   private JLabel codeLabel = new JLabel("Player: ");
   private JLabel isTurnLabel = new JLabel("Is my turn?");
 
-  private JTextField playerNameText = new JTextField(10);
-  private JTextField chipsText = new JTextField(10);
-  private JTextField codeText = new JTextField(10);
-  private JTextField isTurnText = new JTextField(10);
+  private JLabel playerNameResponse = new JLabel("test");
+  private JLabel chipsResponse = new JLabel("test");
+  private JLabel codeResponse = new JLabel("test");
+  private JLabel isTurnResponse = new JLabel("test");
+
 
   //Player2
   private JLabel playerNameLabel2 = new JLabel("Nombre del jugador: ");
@@ -28,11 +27,11 @@ public class PlayerView extends JPanel {
   private JLabel codeLabel2 = new JLabel("Jugador: ");
   private JLabel isTurnLabel2 = new JLabel("Es mi turno?");
 
+  private JLabel playerNameResponse2 = new JLabel("test2");
+  private JLabel chipsResponse2 = new JLabel("test2");
+  private JLabel codeResponse2 = new JLabel("test2");
+  private JLabel isTurnResponse2 = new JLabel("test2");
 
-  private JLabel playerNameTextReturn2 = new JLabel("test");
-  private JLabel chipsTextReturn2 = new JLabel("test");
-  private JLabel codeTextReturn2 = new JLabel("test");
-  private JLabel isTurnTextReturn2 = new JLabel("test");
 
   public PlayerView() {
 
@@ -59,14 +58,14 @@ public class PlayerView extends JPanel {
 
 
     mainPanelFormatting.gridx = 0;
-    mainPanelFormatting.gridy = 1;
+    mainPanelFormatting.gridy = 0;
     mainPanelFormatting.weightx = 0.5;
     mainPanelFormatting.anchor = GridBagConstraints.CENTER;
     mainContainer.add(playerOnePanel, mainPanelFormatting);
 
     mainPanelFormatting.weightx = 0.5;
     mainPanelFormatting.gridx = 0;
-    mainPanelFormatting.gridy = 2;
+    mainPanelFormatting.gridy = 1;
     mainPanelFormatting.anchor = GridBagConstraints.CENTER;
     mainContainer.add(playerTwoPanel, mainPanelFormatting);
     /*Formating
@@ -80,7 +79,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 1;
-    playerOnePanel.add(playerNameText, panelFormatting);
+    playerOnePanel.add(playerNameResponse, panelFormatting);
 
     //Second row
     panelFormatting.gridx = 0;
@@ -89,7 +88,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 2;
-    playerOnePanel.add(chipsText, panelFormatting);
+    playerOnePanel.add(chipsResponse, panelFormatting);
 
     // Third row
 
@@ -99,7 +98,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 3;
-    playerOnePanel.add(codeText, panelFormatting);
+    playerOnePanel.add(codeResponse, panelFormatting);
 
     //forht row
 
@@ -109,7 +108,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 4;
-    playerOnePanel.add(isTurnText, panelFormatting);
+    playerOnePanel.add(isTurnResponse, panelFormatting);
 
      /*Formating
      * for player 2
@@ -122,7 +121,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 1;
-    playerTwoPanel.add(playerNameTextReturn2, panelFormatting);
+    playerTwoPanel.add(playerNameResponse2, panelFormatting);
 
     //Second row
     panelFormatting.gridx = 0;
@@ -131,7 +130,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 2;
-    playerTwoPanel.add(chipsTextReturn2, panelFormatting);
+    playerTwoPanel.add(chipsResponse2, panelFormatting);
 
     // Third row
 
@@ -141,7 +140,7 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 3;
-    playerTwoPanel.add(codeTextReturn2, panelFormatting);
+    playerTwoPanel.add(codeResponse2, panelFormatting);
 
 
     panelFormatting.gridx = 0;
@@ -150,45 +149,45 @@ public class PlayerView extends JPanel {
 
     panelFormatting.gridx = 1;
     panelFormatting.gridy = 4;
-    playerTwoPanel.add(isTurnTextReturn2, panelFormatting);
+    playerTwoPanel.add(isTurnResponse2, panelFormatting);
 
 
     //Adding the whole panel to the screen
     add(mainContainer);
 
   }
+//Sets for Chips response
 
-  //Player one view Sets and gets
-  public String getPlayerName() {
-    return playerNameText.getText();
+  public void setChipsLabel(int chipsLabel) {
+    chipsResponse.setText(Integer.toString(chipsLabel));
   }
 
-  public int getChips() {
-    return Integer.parseInt(chipsText.getText());
+  public void setChipsLabel2(int chipsLabel2) {
+    chipsResponse2.setText(Integer.toString(chipsLabel2));
+  }
+//Sets for code response
+  public void setCodeResponse(int codeResponse) {
+    this.codeResponse.setText(Integer.toString(codeResponse));
   }
 
-  public int getCode() {
-    return Integer.parseInt(codeText.getText());
+  public void setCodeResponse2(int codeResponse2) {
+    this.codeResponse2.setText(Integer.toString(codeResponse2));
+  }
+//Sets for turns
+  public void setIsTurnResponse(boolean isTurnResponse) {
+    this.isTurnResponse.setText(""+isTurnResponse);
   }
 
-  public String getIsTurn() {
-    return isTurnText.getText();
+  public void setIsTurnResponse2(boolean isTurnResponse2) {
+    this.isTurnResponse2.setText(""+isTurnResponse2);
+  }
+//Sets for player name
+  public void setPlayerNameResponse(String playerNameResponse) {
+    this.playerNameResponse.setText(playerNameResponse);
   }
 
-  public void setViewCode2(int code) {
-    codeTextReturn2.setText(Integer.toString(code));
-  }
-
-  public void setViewChips2(int chips) {
-    chipsTextReturn2.setText(Integer.toString(chips));
-  }
-
-  public void setViewPlayerName2(String PlayerName) {
-    playerNameTextReturn2.setText(PlayerName);
-  }
-
-  public void setViewIsTurn2(Boolean isTurn) {
-    isTurnTextReturn2.setText(isTurn.toString());
+  public void setPlayerNameResponse2(String playerNameResponse2) {
+    this.playerNameResponse2.setText(playerNameResponse2);
   }
 }
 
