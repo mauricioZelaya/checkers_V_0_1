@@ -1,4 +1,5 @@
 package org.checkers.view;
+
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.*;
@@ -142,7 +143,7 @@ public class PlayerView extends JPanel {
     panelFormatting.gridy = 3;
     playerTwoPanel.add(codeResponse2, panelFormatting);
 
-
+    // forth row
     panelFormatting.gridx = 0;
     panelFormatting.gridy = 4;
     playerTwoPanel.add(isTurnLabel2, panelFormatting);
@@ -165,7 +166,8 @@ public class PlayerView extends JPanel {
   public void setChipsLabel2(int chipsLabel2) {
     chipsResponse2.setText(Integer.toString(chipsLabel2));
   }
-//Sets for code response
+
+  //Sets for code response
   public void setCodeResponse(int codeResponse) {
     this.codeResponse.setText(Integer.toString(codeResponse));
   }
@@ -173,25 +175,25 @@ public class PlayerView extends JPanel {
   public void setCodeResponse2(int codeResponse2) {
     this.codeResponse2.setText(Integer.toString(codeResponse2));
   }
-//Sets for turns
+
+  //Sets for turns
   public void setIsTurnResponse(boolean isTurnResponse) {
-    if(isTurnResponse){
+    if (isTurnResponse) {
       this.isTurnResponse.setText("Yes");
-    }
-    else{
+    } else {
       this.isTurnResponse.setText("No");
     }
   }
 
   public void setIsTurnResponse2(boolean isTurnResponse2) {
-    if(isTurnResponse2){
+    if (isTurnResponse2) {
       this.isTurnResponse2.setText("Yes");
-    }
-    else{
-          this.isTurnResponse2.setText("No");
+    } else {
+      this.isTurnResponse2.setText("No");
     }
   }
-//Sets for player name
+
+  //Sets for player name
   public void setPlayerNameResponse(String playerNameResponse) {
     this.playerNameResponse.setText(playerNameResponse);
   }
