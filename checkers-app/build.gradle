@@ -1,7 +1,5 @@
 apply plugin: 'java'
 
 dependencies {
-    //compile project(':checkers-models')
     compile project(':checkers-views')
-    compile project(':checkers-controllers')
 }
