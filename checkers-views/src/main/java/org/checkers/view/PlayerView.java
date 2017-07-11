@@ -22,10 +22,10 @@ public class PlayerView extends JPanel {
 
 
   //Player2
-  private JLabel playerNameLabel2 = new JLabel("Nombre del jugador: ");
-  private JLabel chipsLabel2 = new JLabel("Cantidad de chips: ");
-  private JLabel codeLabel2 = new JLabel("Jugador: ");
-  private JLabel isTurnLabel2 = new JLabel("Es mi turno?");
+  private JLabel playerNameLabel2 = new JLabel("Player name: ");
+  private JLabel chipsLabel2 = new JLabel("Active chips: ");
+  private JLabel codeLabel2 = new JLabel("Player: ");
+  private JLabel isTurnLabel2 = new JLabel("Is my turn?");
 
   private JLabel playerNameResponse2 = new JLabel("test2");
   private JLabel chipsResponse2 = new JLabel("test2");
@@ -36,11 +36,14 @@ public class PlayerView extends JPanel {
   public PlayerView() {
 
     JPanel mainContainer = new JPanel();
-    mainContainer.setBackground(Color.green);
+    //mainContainer.setBackground(Color.green);
 
     mainContainer.setLayout(new GridBagLayout());
     GridBagConstraints mainPanelFormatting = new GridBagConstraints();
+  mainPanelFormatting.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+  mainPanelFormatting.fill = java.awt.GridBagConstraints.HORIZONTAL;
 
+  mainPanelFormatting.weightx = 1.0;
     JPanel playerOnePanel = new JPanel(new GridBagLayout());
     JPanel playerTwoPanel = new JPanel(new GridBagLayout());
 
@@ -59,11 +62,9 @@ public class PlayerView extends JPanel {
 
     mainPanelFormatting.gridx = 0;
     mainPanelFormatting.gridy = 0;
-    mainPanelFormatting.weightx = 0.5;
     mainPanelFormatting.anchor = GridBagConstraints.CENTER;
     mainContainer.add(playerOnePanel, mainPanelFormatting);
 
-    mainPanelFormatting.weightx = 0.5;
     mainPanelFormatting.gridx = 0;
     mainPanelFormatting.gridy = 1;
     mainPanelFormatting.anchor = GridBagConstraints.CENTER;
@@ -175,11 +176,21 @@ public class PlayerView extends JPanel {
   }
 //Sets for turns
   public void setIsTurnResponse(boolean isTurnResponse) {
-    this.isTurnResponse.setText(""+isTurnResponse);
+    if(isTurnResponse){
+      this.isTurnResponse.setText("Yes");
+    }
+    else{
+      this.isTurnResponse.setText("No");
+    }
   }
 
   public void setIsTurnResponse2(boolean isTurnResponse2) {
-    this.isTurnResponse2.setText(""+isTurnResponse2);
+    if(isTurnResponse2){
+      this.isTurnResponse2.setText("Yes");
+    }
+    else{
+          this.isTurnResponse2.setText("No");
+    }
   }
 //Sets for player name
   public void setPlayerNameResponse(String playerNameResponse) {
