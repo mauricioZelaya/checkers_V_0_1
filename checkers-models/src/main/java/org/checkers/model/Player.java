@@ -12,8 +12,8 @@ public class Player {
     private int chips;// Amount of chips that the player has
     private boolean isTurn;// boolean that represents whether or not is the player turn
 
-    public void player(int code){
-        name = "Player";
+    public Player(int code){
+        name = "PlayerName";
         chips = 12; //Started at base 12 since that is the basic of each player
         this.code = code;
         isTurn=false;
