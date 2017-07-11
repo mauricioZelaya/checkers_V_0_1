@@ -1,8 +1,11 @@
 package org.checkers.app;
-
+import org.checkers.model.Player;
 import org.checkers.view.DrawingPanel;
+import org.checkers.view.PlayerView;
 import org.checkers.view.MenuBar;
+import org.checkers.controller.PlayerController;
 
+import java.awt.*;
 import javax.swing.JFrame;
 /**
  * Write a description of class DrawingWindow here.
@@ -10,21 +13,30 @@ import javax.swing.JFrame;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class DrawingWindow extends JFrame
-{
-   private DrawingPanel panel;
-   private MenuBar menuBar;
+public class DrawingWindow extends JFrame {
 
-   public DrawingWindow(String title) {
-       super(title);
+  private DrawingPanel panel;
+  private MenuBar menuBar;
+  private PlayerController miPlayerController;
 
-       panel = new DrawingPanel();
+  public DrawingWindow(String title) {
+    super(title);
+    setLayout(new BorderLayout());
 
-       menuBar = new MenuBar();
+    panel = new DrawingPanel();
+    PlayerView newView = new PlayerView();
 
-       setJMenuBar(menuBar.getMenuBar());
-       
-       panel.setSize(300, 300);
-       getContentPane().add(panel);
-   }
+    Player miPlayerOne = new Player(1);
+    Player miPlayerTwo = new Player(1);
+
+    PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
+
+    menuBar = new MenuBar();
+
+    setJMenuBar(menuBar.getMenuBar());
+
+    add(panel, BorderLayout.CENTER);
+    add(newView, BorderLayout.EAST);
+
+  }
 }
