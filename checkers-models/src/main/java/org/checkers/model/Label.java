@@ -13,29 +13,39 @@ import java.awt.FontMetrics;
  * @version (a version number or a date)
  */
 public class Label extends AbstractShape {
-    
+    private String label;
+
     public Label(int x, int y, String text){
-        this.x=x;
-        this.y=y;
-        this.name = text;
+        super(x, y);
+        this.label = text;
     }
-    
+
+    @Override
     public boolean isInsideShape(int x, int y){
         return false;
     }
-    
-    public void drawShape(Graphics g){        
+
+    @Override
+    public void drawShape(Graphics g){
         FontMetrics fm = g.getFontMetrics();
         int xText;
         int yText;
-        xText= x - fm.stringWidth(name)/2;
+        xText= x - fm.stringWidth(label)/2;
         yText= y + fm.getHeight()/3;
-        g.setColor(Color.white);
-        g.drawString(name, xText, yText); 
+        g.drawString(label, xText, yText);
     }
-    
+
+    @Override
     public int getValue(){
         return 0;
     }
-   
+
+    @Override
+    public void setValue(int value) {
+    }
+
+    @Override
+    public void toggleState() {
+    }
+
 }
