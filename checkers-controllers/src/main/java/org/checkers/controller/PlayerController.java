@@ -2,7 +2,6 @@ package org.checkers.controller;
 
 import org.checkers.model.Player;
 import org.checkers.view.PlayerView;
-
 /**
  * Created by Kenneth on 7/10/2017.
  * Controller for the execution of player model and view
@@ -21,15 +20,17 @@ public class PlayerController {
     this.thePlayer = thePlayer;
     this.thePlayer2 = thePlayer2;
 
-    thePlayerView.setViewCode2(thePlayer.getCode());
-    thePlayerView.setViewChips2(thePlayer.getChips());
-    thePlayerView.setViewPlayerName2(thePlayer.getName());
-    thePlayerView.setViewIsTurn2(thePlayer.isTurn());
+        thePlayer.setName("Kenneth");
+        thePlayerView.setPlayerNameResponse(thePlayer.getName());
+        thePlayerView.setChipsLabel(thePlayer.getChips());
+        thePlayerView.setCodeResponse(thePlayer.getCode());
+        thePlayerView.setIsTurnResponse(thePlayer.isTurn());
 
+        thePlayer2.setName("Leo");
+        thePlayerView.setCodeResponse2(thePlayer2.getCode());
+        thePlayerView.setChipsLabel2(thePlayer2.getChips());
+        thePlayerView.setPlayerNameResponse2(thePlayer2.getName());
+        thePlayerView.setIsTurnResponse2(thePlayer2.isTurn());
 
-    thePlayerView.setViewCode2(thePlayer2.getCode());
-    thePlayerView.setViewChips2(thePlayer2.getChips());
-    thePlayerView.setViewPlayerName2(thePlayer2.getName());
-    thePlayerView.setViewIsTurn2(thePlayer2.isTurn());
   }
-  }
+}
