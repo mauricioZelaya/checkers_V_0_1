@@ -35,6 +35,28 @@ public class PlayerController {
     thePlayerView.setChipsLabel2(thePlayer2.getChips());
     thePlayerView.setPlayerNameResponse2(thePlayer2.getName());
     thePlayerView.setIsTurnResponse2(thePlayer2.isTurn());
+  }
+
+  /**
+   * SetPlayerTurn allows the asignation to of the turn to a specific player
+   * @param turn
+   * receives the turn that will be assigned to the player
+   * @param player
+   * Received the player wich turn will be assigned
+   */
+  public void SetPlayerTurn(boolean turn, Player player){
+    player.setTurn(turn);
+  }
+
+  /**
+   * GetPlayerTurn allows a request of the status of the variable turn of a specific player
+   * @param player
+   * Receibes the player wich turn will be consulted
+   * @return
+   * a boolean value representing if its the player turn or not
+   */
+  public boolean GetPlayerTurn(Player player){
+    return player.isTurn();
+  }
 
   }
-}
