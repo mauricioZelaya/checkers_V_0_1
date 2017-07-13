@@ -1,66 +1,85 @@
 package org.checkers.view;
 
-import org.checkers.controller.FileController;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
-import javax.swing.*;
+import org.checkers.view.util.MenuItem;
 
+/**
+ * MenuBar view loads all Menus and MenuItems declared declared on this class.
+ */
 public class MenuBar {
 
-  //Creation of the MenuBar object
-  private JMenuBar menuBar;
-  //Creation of each one of the menu main items
-  private JMenu fileMenu;
+  // Declare Menu Bar
+  private final JMenuBar menuBar;
 
-  //Creation of menu items
-  private JMenuItem saveMenuItem;
-  private JMenuItem loadMenuItem;
-  private JMenuItem saveReplayMenuItem;
-  private JMenuItem loadReplayMenuItem;
-  private JMenuItem exitMenuItem;
+  // Declare FileMenu of Menu Bar
+  private final JMenu fileMenu;
 
-  private FileController controller;
+  // Declare Items of FileMenu
+  private final JMenuItem newMenuItem;
+  private final JMenuItem saveMenuItem;
+  private final JMenuItem loadMenuItem;
+  private final JMenuItem saveReplayMenuItem;
+  private final JMenuItem loadReplayMenuItem;
+  private final JMenuItem exitMenuItem;
 
+  /**
+   * Calling this constructor the menu and items will be initialized and displayed when
+   * parent container will be showed.
+   */
   public MenuBar() {
-
-    controller = new FileController();
 
     menuBar = new JMenuBar();
 
-    //Building FileMenu
-    fileMenu = new JMenu("File");
+    fileMenu = new JMenu(MenuItem.MENU_FILE);
 
-    //Buildig save with action listener
-    saveMenuItem = new JMenuItem("Save");
-    saveMenuItem.addActionListener(controller);
+    // Create menu items of FileMenu
+    newMenuItem = new JMenuItem(MenuItem.FILE_NEW_GAME);
+    saveMenuItem = new JMenuItem(MenuItem.FILE_SAVE_GAME);
+    loadMenuItem = new JMenuItem(MenuItem.FILE_LOAD_GAME);
+    saveReplayMenuItem = new JMenuItem(MenuItem.FILE_SAVE_REPLAY);
+    loadReplayMenuItem = new JMenuItem(MenuItem.FILE_LOAD_REPLAY);
+    exitMenuItem = new JMenuItem(MenuItem.FILE_EXIT_GAME);
+
+    // Add menu items to FileMenu object
+    fileMenu.add(newMenuItem);
     fileMenu.add(saveMenuItem);
-
-    //Buildig save with action listener
-
-    loadMenuItem = new JMenuItem("Load");
-    loadMenuItem.addActionListener(controller);
     fileMenu.add(loadMenuItem);
-
-
-    //Buildig saveReplay with action listener
-    saveReplayMenuItem = new JMenuItem("Save Replay");
-    saveReplayMenuItem.addActionListener(controller);
     fileMenu.add(saveReplayMenuItem);
-
-    //Buildig loadReplay with action listener
-    loadReplayMenuItem = new JMenuItem("Load Replay");
-    loadReplayMenuItem.addActionListener(controller);
     fileMenu.add(loadReplayMenuItem);
-
-    //Buildig exit (action listener will be implemented differently)
-    exitMenuItem = new JMenuItem("Exit");
-    exitMenuItem.addActionListener(controller);
     fileMenu.add(exitMenuItem);
 
-    // add menus to menubar
+    // Add FileMenu object to MenuBar
     menuBar.add(fileMenu);
   }
 
   public JMenuBar getMenuBar() {
     return menuBar;
+  }
+
+  public JMenuItem getNewMenuItem() {
+    return newMenuItem;
+  }
+
+  public JMenuItem getSaveMenuItem() {
+    return saveMenuItem;
+  }
+
+  public JMenuItem getLoadMenuItem() {
+    return loadMenuItem;
+  }
+
+  public JMenuItem getSaveReplayMenuItem() {
+    return saveReplayMenuItem;
+  }
+
+  public JMenuItem getLoadReplayMenuItem() {
+    return loadReplayMenuItem;
+  }
+
+  public JMenuItem getExitMenuItem() {
+    return exitMenuItem;
   }
 }
