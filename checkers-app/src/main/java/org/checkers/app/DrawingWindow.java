@@ -1,6 +1,6 @@
 package org.checkers.app;
 
-import org.checkers.model.Player;
+import org.checkers.controller.FileController;
 import org.checkers.view.DrawingPanel;
 import org.checkers.view.PlayerView;
 import org.checkers.view.MenuBar;
@@ -25,7 +25,10 @@ public class DrawingWindow extends JFrame {
     super(title);
     setLayout(new BorderLayout());
 
-    panel = new DrawingPanel();
+   protected FileController controller;
+
+   public DrawingWindow(String title) {
+       super(title);
 
     //Player Contruction
 
@@ -40,5 +43,11 @@ public class DrawingWindow extends JFrame {
     add(panel, BorderLayout.CENTER);
     add(newView, BorderLayout.EAST);
 
-  }
+       controller = new FileController(menuBar);
+
+       setJMenuBar(menuBar.getMenuBar());
+       
+       panel.setSize(300, 300);
+       getContentPane().add(panel);
+   }
 }
