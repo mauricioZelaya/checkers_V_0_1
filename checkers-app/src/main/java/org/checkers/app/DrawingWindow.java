@@ -5,6 +5,7 @@ import org.checkers.view.DrawingPanel;
 import org.checkers.view.PlayerView;
 import org.checkers.view.MenuBar;
 import org.checkers.controller.PlayerController;
+import org.checkers.model.Player;
 
 import java.awt.*;
 import javax.swing.JFrame;
@@ -15,8 +16,9 @@ import javax.swing.JFrame;
  */
 public class DrawingWindow extends JFrame {
   // Creation of the Drawing Panel (The board)
-  private DrawingPanel panel;
+  private DrawingPanel panel = new DrawingPanel();
   private MenuBar menuBar;
+
   // Creation of the controller
   private PlayerController miPlayerController;
 
@@ -25,29 +27,39 @@ public class DrawingWindow extends JFrame {
     super(title);
     setLayout(new BorderLayout());
 
-   protected FileController controller;
+    //protected FileController controller;
 
-   public DrawingWindow(String title) {
-       super(title);
+      //Player Contruction
 
-    //Player Contruction
+      Player miPlayerOne = new Player(1);
+      Player miPlayerTwo = new Player(2);
+      PlayerView newView = new PlayerView();
+      PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
 
-    Player miPlayerOne = new Player(1);
-    Player miPlayerTwo = new Player(2);
-    PlayerView newView = new PlayerView();
-    PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
-    // Menu bar construction
-    menuBar = new MenuBar();
-    //Setting menubar and both panels to the main frame
-    setJMenuBar(menuBar.getMenuBar());
-    add(panel, BorderLayout.CENTER);
-    add(newView, BorderLayout.EAST);
+      miPlayerController.NextPlayerTurn(miPlayerOne,miPlayerTwo, newView);
+      miPlayerController.NextPlayerTurn(miPlayerOne,miPlayerTwo, newView);
 
-       controller = new FileController(menuBar);
+      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
 
-       setJMenuBar(menuBar.getMenuBar());
-       
-       panel.setSize(300, 300);
-       getContentPane().add(panel);
-   }
-}
+      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
+      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
+
+      menuBar = new MenuBar();
+      setJMenuBar(menuBar.getMenuBar());
+      add(panel, BorderLayout.CENTER);
+      add(newView, BorderLayout.EAST);
+
+      // Menu bar construction
+
+      //Setting menubar and both panels to the main frame
+
+
+      //controller = new FileController(menuBar);
+
+    }
+  }

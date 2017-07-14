@@ -159,11 +159,11 @@ public class PlayerView extends JPanel {
   }
 //Sets for Chips response
 
-  public void setChipsLabel(int chipsLabel) {
+  public void setChipsResponse(int chipsLabel) {
     chipsResponse.setText(Integer.toString(chipsLabel));
   }
 
-  public void setChipsLabel2(int chipsLabel2) {
+  public void setChipsResponse2(int chipsLabel2) {
     chipsResponse2.setText(Integer.toString(chipsLabel2));
   }
 
