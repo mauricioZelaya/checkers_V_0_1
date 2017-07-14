@@ -38,25 +38,27 @@ public class PlayerController {
   }
 
   /**
-   * SetPlayerTurn allows the asignation to of the turn to a specific player
-   * @param turn
-   * receives the turn that will be assigned to the player
-   * @param player
-   * Received the player wich turn will be assigned
+   * Changes the  turn of the players and return the player who's turn is next
+   * @param player2 -  receives one of the players
+   * @param player - receives the other player
+   * @return player who's turn is true
    */
-  public void SetPlayerTurn(boolean turn, Player player){
-    player.setTurn(turn);
+  public Player NextPlayerTurn(Player player, Player player2){
+    if(player.isTurn()){
+      player2.setTurn(true);
+      player.setTurn(false);
+      return player2;
+    }
+    player2.setTurn(false);
+    player.setTurn(true);
+    return player;
   }
 
   /**
-   * GetPlayerTurn allows a request of the status of the variable turn of a specific player
-   * @param player
-   * Receibes the player wich turn will be consulted
-   * @return
-   * a boolean value representing if its the player turn or not
+   * Decreases one on the chips count for the player
+   * @param player - a player and decrease one chip out of the chips count
    */
-  public boolean GetPlayerTurn(Player player){
-    return player.isTurn();
+  public void DeacreaseChipControl(Player player){
+    player.decreaseChip();
   }
-
   }

@@ -53,5 +53,9 @@ public class Player {
         this.code = code;
     }
 
+    public void decreaseChip(){
+        this.chips --;
+    }
+
 }
 
