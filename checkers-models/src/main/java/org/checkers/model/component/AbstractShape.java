@@ -2,7 +2,6 @@ package org.checkers.model.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Comparator;
 /**
  * Abstract class AbstractShape - write a description of the class here
  *
@@ -10,44 +9,60 @@ import java.util.Comparator;
  * @version (version number or date here)
  */
 public abstract class AbstractShape {
-    
-    protected final int HIDE = 0;
-    protected final int SHOW = 1;
-    protected final int SELECTED = 2;
-    protected final int ILLEGAL = 3;
-    
+
     protected int x; //(x, y) define the center of shape
     protected int y;
     protected Color color;
-    protected int state;
-    protected String name = ""; //added to give Chips a coordinates name/used in label too
-   
+
     public abstract boolean isInsideShape(int x, int y);
     public abstract void drawShape(Graphics g);
     public abstract int getValue(); //this was used for compare, returns unique radius/side value
-   
-    public void draw(Graphics g) {
-       g.setColor(color);
-       drawShape(g);
+    public abstract void setValue(int value);
+    public abstract void toggleState();
+
+    protected AbstractShape(int x, int y) {
+      this.x = x;
+      this.y = y;
     }
-    
+
+    protected AbstractShape(int x, int y, Color color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(color);
+        drawShape(g);
+    }
+
     public void setColor(Color color){
         this.color=color;
     }
-    
-    public void setState(int state) {
-        this.state = state;
+
+    public Color getColor() {
+        return color;
     }
-    
-    public int getState() {
-        return state;
+
+    public int getX() {
+        return x;
     }
-    
-    public void setName(String name) {
-        this.name = name;
+
+    public void setX(int x) {
+        this.x = x;
     }
-    
-    public String getName() {
-        return(name);
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setAllShapeProperties(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
+
