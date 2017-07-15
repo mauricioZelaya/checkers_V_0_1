@@ -1,4 +1,4 @@
-package org.checkers.core;
+package org.checkers.model;
 
 /**
  * This Interface defines the methods expected to come out from a Matrix implementation in order to properly manage it.

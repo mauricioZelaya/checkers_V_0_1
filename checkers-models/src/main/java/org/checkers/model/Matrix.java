@@ -1,9 +1,11 @@
-package org.checkers.core;
+package org.checkers.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Observable;
+
+import org.checkers.core.Utils;
 
 /**
  * This Matrix class is the manager of the "state" of a Board in order to help with rules validation. It implements an InterfaceMatrix.

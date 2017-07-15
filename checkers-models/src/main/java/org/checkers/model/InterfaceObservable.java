@@ -1,4 +1,4 @@
-package org.checkers.core;
+package org.checkers.model;
 
 import java.util.Observer;
 /**

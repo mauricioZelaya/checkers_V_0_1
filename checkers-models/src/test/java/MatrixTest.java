@@ -1,8 +1,9 @@
-package org.checkers.core;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
-import org.junit.After;
+import org.checkers.model.Matrix;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -18,7 +19,8 @@ public class MatrixTest
     /**
      * Sets the initial state of the matrix instance for testing below.
      */
-    public MatrixTest() {
+    @Before
+    public void setUp() {
         matrix = new Matrix();
         matrix.initMatrixToDefaultState();
     }
@@ -36,7 +38,7 @@ public class MatrixTest
 
     @Test
     public void testAnIntMatrixIsReturned() {
-        assertTrue(matrix.getMatrix() instanceof int[][]);
+        Assert.assertTrue(matrix.getMatrix() instanceof int[][]);
     }
 
     @Test
