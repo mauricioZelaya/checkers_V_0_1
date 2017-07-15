@@ -1,21 +1,18 @@
-package org.checkers.model.component;
+package org.checkers.view.component;
 
 /**
- * A Composite container which defines the drawable shapes for a Tile of the Checkers Board.
+ * [ VIEW ]
+ * This Composite shape draws the Square that makes up the tile. XY position received is the center of the shape(s)/square.
  *
- * @author (Done in class, extended some to adapt to Checkers game)
+ * @author (Leonardo Antezana)
  * @version (July 2017)
  */
 public class TileShape extends CompositeShape
 {
-  //protected int side;
-
     public TileShape(int x, int y, int side) {
         super(x, y);
-        //this.side = side;
         Square tile = new Square(x, y);
         tile.setValue(side);
-
         elements.add(tile);
     }
 }
