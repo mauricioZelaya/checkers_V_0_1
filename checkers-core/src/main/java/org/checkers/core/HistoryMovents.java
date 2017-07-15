@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class HistoryMovents {
 
-  private List<String> history;
+  private final List<String> history;
 
   public HistoryMovents() {
     this.history = new ArrayList<String>();
