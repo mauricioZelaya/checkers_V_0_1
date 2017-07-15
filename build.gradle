@@ -31,8 +31,6 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
-    apply plugin: 'pmd'
-    apply plugin: 'findbugs'
     apply plugin: "net.saliman.cobertura"
     apply plugin: 'io.spring.dependency-management'
 
@@ -51,21 +49,7 @@ subprojects {
         }
     }
 
-    tasks.withType(FindBugs) {
-        reports {
-            xml.enabled false
-            html.enabled true
-        }
-    }
-
     tasks.withType(Checkstyle) {
-        reports {
-            xml.enabled false
-            html.enabled true
-        }
-    }
-
-    tasks.withType(Pmd) {
         reports {
             xml.enabled false
             html.enabled true
@@ -77,7 +61,7 @@ subprojects {
             //attributes 'Main-Class': 'com.Main'
         }
         baseName = project.name + '-all'
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        from { configurations.compile.collect { it.directory ? it : zipTree(it) } }
         with jar
     }
 
