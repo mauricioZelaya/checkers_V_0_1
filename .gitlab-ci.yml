@@ -1,46 +1,27 @@
 image: java:8-jdk
 
-language: java
-jdk:
-  - oraclejdk8
-  - openjdk8
-
 stages:
   - build
-  - test
-  - deploy
+  - package
 
 before_script:
-#  - echo `pwd` # debug
-#  - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
   - chmod +x gradlew
-
-cache:
-  paths:
-    - .gradle/wrapper
-    - .gradle/caches
 
 build:
   stage: build
   script:
-    - ./gradlew assemble
-    - ./gradlew allJar
-  artifacts:
-    paths:
-      - build/libs/*.jar
-    expire_in: 1 week
+    - ./gradlew build
   only:
     - develop, feature/CHK-013-GitLab-CI-CD
 
-test:
-  stage: test
+package:
+  stage: package
   script:
-    - ./gradlew check
-
-deploy:
-  stage: deploy
-  script:
-    - ./deploy
+    - ./gradlew allJar
+  artifacts:
+  paths:
+    - build/libs/*.jar
+  expire_in: 1 week
 
 after_script:
-  - echo "End CI"
+  - echo "Checkers is up!"
