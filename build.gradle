@@ -69,6 +69,10 @@ subprojects {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
+
 subprojects.each { subproject -> evaluationDependsOn(subproject.path)}
 
 task allJar(type: Jar, dependsOn: subprojects.assemble) {
