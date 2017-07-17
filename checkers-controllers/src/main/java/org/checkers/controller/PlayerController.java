@@ -4,37 +4,26 @@ import org.checkers.model.Player;
 import org.checkers.view.PlayerView;
 
 /**
- * Created by Kenneth on 7/10/2017.
- * Controller for the execution of player model and view
+ * This class allows the interaction of the view and the model in the controller
  */
 public class PlayerController {
 
-  //Creation of the player model
-  /*private Player thePlayer;
-  private Player thePlayer2;*/
-  //Creation of the player  view
-  private PlayerView thePlayerView;
-
-  //Controller construction
   public PlayerController(Player thePlayer, Player thePlayer2, PlayerView thePlayerView) {
 
-    /*this.thePlayerView = thePlayerView;
-    this.thePlayer = thePlayer;
-    this.thePlayer2 = thePlayer2;*/
     //Getting all the info from the object player one and passing it to the view
-    thePlayer.setName("Kenneth Perez");
-    thePlayer.setTurn(true);
-    thePlayerView.setPlayerNameResponse(thePlayer.getName());
-    thePlayerView.setChipsResponse(thePlayer.getChips());
-    thePlayerView.setCodeResponse(thePlayer.getCode());
-    thePlayerView.setIsTurnResponse(thePlayer.isTurn());
+    thePlayer.SetName("Select player");
+    thePlayer.SetTurn(true);
+    thePlayerView.setPlayerNameResponse(thePlayer.GetName());
+    thePlayerView.setChipsResponse(thePlayer.GetChips());
+    thePlayerView.setCodeResponse(thePlayer.GetCode());
+    thePlayerView.setIsTurnResponse(1,thePlayer.IsTurn());
 
    //Getting all the info from the object player two and passing it to the view
-    thePlayer2.setName("Leonardo Antezana");
-    thePlayerView.setCodeResponse2(thePlayer2.getCode());
-    thePlayerView.setChipsResponse2(thePlayer2.getChips());
-    thePlayerView.setPlayerNameResponse2(thePlayer2.getName());
-    thePlayerView.setIsTurnResponse2(thePlayer2.isTurn());
+    thePlayer2.SetName("Select player");
+    thePlayerView.setCodeResponse2(thePlayer2.GetCode());
+    thePlayerView.setChipsResponse2(thePlayer2.GetChips());
+    thePlayerView.setPlayerNameResponse2(thePlayer2.GetName());
+    thePlayerView.setIsTurnResponse(2,thePlayer2.IsTurn());
   }
 
   /**
@@ -44,18 +33,18 @@ public class PlayerController {
    * @return player who's turn is true
    */
   public Player NextPlayerTurn(Player player, Player player2, PlayerView thePlayerView){
-    if(player.isTurn()){
-      player2.setTurn(true);
-      player.setTurn(false);
-      thePlayerView.setIsTurnResponse2(true);
-      thePlayerView.setIsTurnResponse(false);
+    if(player.IsTurn()){
+      player2.SetTurn(true);
+      player.SetTurn(false);
+      thePlayerView.setIsTurnResponse(1,false);
+      thePlayerView.setIsTurnResponse(2,true);
       return player2;
 
     }
-    player2.setTurn(false);
-    player.setTurn(true);
-    thePlayerView.setIsTurnResponse2(false);
-    thePlayerView.setIsTurnResponse(true);
+    player2.SetTurn(false);
+    player.SetTurn(true);
+    thePlayerView.setIsTurnResponse(2,false);
+    thePlayerView.setIsTurnResponse(1,true);
     return player;
   }
 
@@ -64,10 +53,11 @@ public class PlayerController {
    * @param player - a player and decrease one chip out of the chips count
    */
   public void DeacreaseChipControl(Player player, PlayerView thePlayerView){
-    player.decreaseChip();
-    if(player.getCode()==1){
-    thePlayerView.setChipsResponse(player.getChips());}
-     if(player.getCode()==2){
-    thePlayerView.setChipsResponse2(player.getChips());}
+    player.DecreaseChip();
+    if(player.GetCode()==1){
+    thePlayerView.setChipsResponse(player.GetChips());}
+     if(player.GetCode()==2){
+    thePlayerView.setChipsResponse2(player.GetChips());}
   }
+
   }

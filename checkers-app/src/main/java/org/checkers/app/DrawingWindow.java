@@ -27,39 +27,19 @@ public class DrawingWindow extends JFrame {
     super(title);
     setLayout(new BorderLayout());
 
-    //protected FileController controller;
-
-      //Player Contruction
+    protected FileController controller;
 
       Player miPlayerOne = new Player(1);
       Player miPlayerTwo = new Player(2);
       PlayerView newView = new PlayerView();
       PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
 
-      miPlayerController.NextPlayerTurn(miPlayerOne,miPlayerTwo, newView);
-      miPlayerController.NextPlayerTurn(miPlayerOne,miPlayerTwo, newView);
-
-      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerOne,newView);
-
-      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
-      miPlayerController.DeacreaseChipControl(miPlayerTwo,newView);
-
       menuBar = new MenuBar();
       setJMenuBar(menuBar.getMenuBar());
       add(panel, BorderLayout.CENTER);
       add(newView, BorderLayout.EAST);
 
-      // Menu bar construction
-
-      //Setting menubar and both panels to the main frame
-
-
-      //controller = new FileController(menuBar);
+      controller = new FileController(menuBar);
 
     }
   }

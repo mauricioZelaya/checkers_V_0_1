@@ -11,195 +11,167 @@ import javax.swing.*;
 public class PlayerView extends JPanel {
 
   //Player1
-  private JLabel playerNameLabel = new JLabel("Player name: ");
-  private JLabel chipsLabel = new JLabel("Active chips: ");
-  private JLabel codeLabel = new JLabel("Player: ");
-  private JLabel isTurnLabel = new JLabel("Is my turn?");
+  private JLabel playerNameLabel = CreateLabel("Player Name:");
+  private JLabel chipsLabel = CreateLabel("Chips:");
+  private JLabel codeLabel = CreateLabel("Player: ");
+  private JLabel isTurnLabel = CreateLabel("Is my turn?");
 
-  private JLabel playerNameResponse = new JLabel("");
-  private JLabel chipsResponse = new JLabel("");
-  private JLabel codeResponse = new JLabel("");
-  private JLabel isTurnResponse = new JLabel("");
+  private JLabel playerNameResponse = CreateLabel("");
+  private JLabel chipsResponse = CreateLabel("");
+  private JLabel codeResponse = CreateLabel("");
+  private JLabel isTurnResponse = CreateLabel("");
 
 
   //Player2
-  private JLabel playerNameLabel2 = new JLabel("Player name: ");
-  private JLabel chipsLabel2 = new JLabel("Active chips: ");
-  private JLabel codeLabel2 = new JLabel("Player: ");
-  private JLabel isTurnLabel2 = new JLabel("Is my turn?");
+  private JLabel playerNameLabel2 = CreateLabel("Player name: ");
+  private JLabel chipsLabel2 = CreateLabel("Active chips: ");
+  private JLabel codeLabel2 = CreateLabel("Player: ");
+  private JLabel isTurnLabel2 = CreateLabel("Is my turn?");
 
-  private JLabel playerNameResponse2 = new JLabel("");
-  private JLabel chipsResponse2 = new JLabel("");
-  private JLabel codeResponse2 = new JLabel("");
-  private JLabel isTurnResponse2 = new JLabel("");
+  private JLabel playerNameResponse2 = CreateLabel("");
+  private JLabel chipsResponse2 = CreateLabel("");
+  private JLabel codeResponse2 = CreateLabel("");
+  private JLabel isTurnResponse2 = CreateLabel("");
 
 
   public PlayerView() {
 
     JPanel mainContainer = new JPanel();
-    //mainContainer.setBackground(Color.green);
-
     mainContainer.setLayout(new GridBagLayout());
-    GridBagConstraints mainPanelFormatting = new GridBagConstraints();
-    mainPanelFormatting.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-    mainPanelFormatting.fill = java.awt.GridBagConstraints.HORIZONTAL;
 
-    JPanel playerOnePanel = new JPanel(new GridBagLayout());
-    JPanel playerTwoPanel = new JPanel(new GridBagLayout());
+    JPanel playerOnePanel = CreatePanel();
+    JPanel playerTwoPanel = CreatePanel();
 
-    // set border for the panel for Player 1
-    playerOnePanel.setBorder(BorderFactory.createTitledBorder(
-        BorderFactory.createEtchedBorder(), "Player 1"));
+    mainContainer.add(playerOnePanel, MainPanelConstraints(0,0));
+    mainContainer.add(playerTwoPanel, MainPanelConstraints(0,1));
 
-    // set border for the panel fro Player 2
-    playerTwoPanel.setBorder(BorderFactory.createTitledBorder(
-        BorderFactory.createEtchedBorder(), "Player 2"));
+    BorderCreation(playerOnePanel,"Player One");
+    BorderCreation(playerTwoPanel,"Player Two");
 
-    GridBagConstraints panelFormatting = new GridBagConstraints();
-    panelFormatting.insets = new Insets(10, 10, 10, 10);
-    panelFormatting.anchor = GridBagConstraints.CENTER;
-
-
-    mainPanelFormatting.gridx = 0;
-    mainPanelFormatting.gridy = 0;
-    mainPanelFormatting.anchor = GridBagConstraints.CENTER;
-    mainContainer.add(playerOnePanel, mainPanelFormatting);
-
-    mainPanelFormatting.gridx = 0;
-    mainPanelFormatting.gridy = 1;
-    mainPanelFormatting.anchor = GridBagConstraints.CENTER;
-    mainContainer.add(playerTwoPanel, mainPanelFormatting);
     /*Formating
      * for player 1
      * information*/
 
-    // First row
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 1;
-    playerOnePanel.add(playerNameLabel, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 1;
-    playerOnePanel.add(playerNameResponse, panelFormatting);
-
-    //Second row
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 2;
-    playerOnePanel.add(chipsLabel, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 2;
-    playerOnePanel.add(chipsResponse, panelFormatting);
-
-    // Third row
-
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 3;
-    playerOnePanel.add(codeLabel, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 3;
-    playerOnePanel.add(codeResponse, panelFormatting);
-
-    //forht row
-
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 4;
-    playerOnePanel.add(isTurnLabel, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 4;
-    playerOnePanel.add(isTurnResponse, panelFormatting);
+    playerOnePanel.add(playerNameLabel, RowsConstraints(0,1));
+    playerOnePanel.add(playerNameResponse, RowsConstraints(1,1));
+    playerOnePanel.add(chipsLabel, RowsConstraints(0,2));
+    playerOnePanel.add(chipsResponse, RowsConstraints(1,2));
+    playerOnePanel.add(codeLabel, RowsConstraints(0,3));
+    playerOnePanel.add(codeResponse, RowsConstraints(1,3));
+    playerOnePanel.add(isTurnLabel, RowsConstraints(0,4));
+    playerOnePanel.add(isTurnResponse, RowsConstraints(1,4));
 
      /*Formating
      * for player 2
      * information*/
 
-    // First row
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 1;
-    playerTwoPanel.add(playerNameLabel2, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 1;
-    playerTwoPanel.add(playerNameResponse2, panelFormatting);
-
-    //Second row
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 2;
-    playerTwoPanel.add(chipsLabel2, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 2;
-    playerTwoPanel.add(chipsResponse2, panelFormatting);
-
-    // Third row
-
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 3;
-    playerTwoPanel.add(codeLabel2, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 3;
-    playerTwoPanel.add(codeResponse2, panelFormatting);
-
-    // forth row
-    panelFormatting.gridx = 0;
-    panelFormatting.gridy = 4;
-    playerTwoPanel.add(isTurnLabel2, panelFormatting);
-
-    panelFormatting.gridx = 1;
-    panelFormatting.gridy = 4;
-    playerTwoPanel.add(isTurnResponse2, panelFormatting);
-
+    playerTwoPanel.add(playerNameLabel2, RowsConstraints(0,1));
+    playerTwoPanel.add(playerNameResponse2, RowsConstraints(1,1));
+    playerTwoPanel.add(chipsLabel2, RowsConstraints(0,2));
+    playerTwoPanel.add(chipsResponse2, RowsConstraints(1,2));
+    playerTwoPanel.add(codeLabel2, RowsConstraints(0,3));
+    playerTwoPanel.add(codeResponse2, RowsConstraints(1,3));
+    playerTwoPanel.add(isTurnLabel2, RowsConstraints(0,4));
+    playerTwoPanel.add(isTurnResponse2, RowsConstraints(1,4));
 
     //Adding the whole panel to the screen
     add(mainContainer);
 
   }
-//Sets for Chips response
-
+  //Sets and gets for Chips response
   public void setChipsResponse(int chipsLabel) {
     chipsResponse.setText(Integer.toString(chipsLabel));
   }
-
   public void setChipsResponse2(int chipsLabel2) {
     chipsResponse2.setText(Integer.toString(chipsLabel2));
   }
-
-  //Sets for code response
   public void setCodeResponse(int codeResponse) {
     this.codeResponse.setText(Integer.toString(codeResponse));
   }
-
   public void setCodeResponse2(int codeResponse2) {
     this.codeResponse2.setText(Integer.toString(codeResponse2));
   }
+  public void setPlayerNameResponse(String playerNameResponse) {this.playerNameResponse.setText(playerNameResponse);}
+  public void setPlayerNameResponse2(String playerNameResponse2) {this.playerNameResponse2.setText(playerNameResponse2);}
 
-  //Sets for turns
-  public void setIsTurnResponse(boolean isTurnResponse) {
-    if (isTurnResponse) {
-      this.isTurnResponse.setText("Yes");
+  /**
+   * updates the UI for player1 with the correct turn status
+   * @param isTurnResponse - Receives a boolean value for the turn and
+   */
+  public void setIsTurnResponse(int playerCode, boolean isTurnResponseValue) {
+    if (playerCode == 1) {
+      if (isTurnResponseValue) {
+        isTurnResponse.setText("Yes");
+      } else {
+        isTurnResponse.setText("No");
+      }
     } else {
-      this.isTurnResponse.setText("No");
+      if (isTurnResponseValue) {
+        isTurnResponse2.setText("Yes");
+      } else {
+        isTurnResponse2.setText("No");
+      }
     }
   }
 
-  public void setIsTurnResponse2(boolean isTurnResponse2) {
-    if (isTurnResponse2) {
-      this.isTurnResponse2.setText("Yes");
-    } else {
-      this.isTurnResponse2.setText("No");
-    }
+  /**
+   *Receives a label detail and created a label out of it
+   * @param Receives a label detail
+   * @return Jlabel
+   */
+  private JLabel CreateLabel(String labelDetail){
+    return new JLabel(labelDetail);
   }
 
-  //Sets for player name
-  public void setPlayerNameResponse(String playerNameResponse) {
-    this.playerNameResponse.setText(playerNameResponse);
+  /**
+   * Crates a panel from with GridBagLayout
+   * @return Jpanel with GridBagLayour
+   */
+  private JPanel CreatePanel(){
+    return new JPanel(new GridBagLayout());
   }
 
-  public void setPlayerNameResponse2(String playerNameResponse2) {
-    this.playerNameResponse2.setText(playerNameResponse2);
+  /**
+   * Receives the panel and a String with the detail of the panels and creates the borders
+   * @param panel - A existing JPanel
+   * @param detail - A sting wit the detail
+   */
+  private void BorderCreation(JPanel panel,String detail){
+
+    panel.setBorder(BorderFactory.createTitledBorder(
+        BorderFactory.createEtchedBorder(), detail));
+
+  }
+
+  /**
+   * Creates the constraints for the formatting of the 2 main panels
+   * @param x - grid x order number
+   * @param y - grid y order number
+   * @return - GridBagLayout formated
+   */
+  private GridBagConstraints MainPanelConstraints(int x, int y){
+    GridBagConstraints mainPanelFormatting = new GridBagConstraints();
+    mainPanelFormatting.gridwidth = GridBagConstraints.RELATIVE;
+    mainPanelFormatting.fill = GridBagConstraints.HORIZONTAL;
+    mainPanelFormatting.gridx = x;
+    mainPanelFormatting.gridy = y;
+    mainPanelFormatting.anchor = GridBagConstraints.CENTER;
+    return mainPanelFormatting;
+  }
+    /**
+   * Creates the constraints for the formatting of the rows inside de panels
+   * @param x - grid x order number
+   * @param y - grid y order number
+   * @return - GridBagLayout formated
+   */
+
+  private GridBagConstraints RowsConstraints(int x, int y){
+    GridBagConstraints panelFormatting = new GridBagConstraints();
+    panelFormatting.insets = new Insets(10, 10, 10, 10);
+    panelFormatting.anchor = GridBagConstraints.CENTER;
+    panelFormatting.gridx = x;
+    panelFormatting.gridy = y;
+    return panelFormatting;
   }
 }
 

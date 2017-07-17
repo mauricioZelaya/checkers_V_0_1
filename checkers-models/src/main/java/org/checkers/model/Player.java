@@ -6,56 +6,58 @@ package org.checkers.model;
  */
 public class Player {
 
+  private String name;
+  private int code;
+  private int chips;
+  private boolean isTurn;
 
-    private String name;
-    private int code;//Later used to define player one or two
-    private int chips;// Amount of chips that the player has
-    private boolean isTurn;// boolean that represents whether or not is the player turn
+  public Player(int code) {
+    name = "PlayerName";
+    chips = 12;
+    this.code = code;
+    isTurn = false;
+  }
 
-    public Player(int code){
-        name = "PlayerName";
-        chips = 12; //Started at base 12 since that is the basic of each player
-        this.code = code;
-        isTurn=false;
-    }
+  //Sets and gets
 
-    //Sets and gets
+  public int GetChips() {
+    return chips;
+  }
 
-    public int getChips() {
-        return chips;
-    }
+  public void SetChips(int chips) {
+    this.chips = chips;
+  }
 
-    public void setChips(int chips) {
-        this.chips = chips;
-    }
+  public boolean IsTurn() {
+    return isTurn;
+  }
 
-    public boolean isTurn() {
-        return isTurn;
-    }
+  public void SetTurn(boolean turn) {
+    isTurn = turn;
+  }
 
-    public void setTurn(boolean turn) {
-        isTurn = turn;
-    }
+  public void SetName(String name) {
+    this.name = name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String GetName() {
+    return name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public int GetCode() {
+    return code;
+  }
 
-    public int getCode() {
-        return code;
-    }
+  public void SetCode(int code) {
+    this.code = code;
+  }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public void decreaseChip(){
-        this.chips --;
-    }
+  /**
+   * Method that decreases by 1 the amount of chips that a player has
+   */
+  public void DecreaseChip() {
+    chips--;
+  }
 
 }
 
