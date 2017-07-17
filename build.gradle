@@ -17,7 +17,7 @@ buildscript {
 
 allprojects {
     group 'org.checkers'
-    version '1.0-SNAPSHOT'
+    version '1.0'
 }
 
 subprojects {
@@ -31,8 +31,6 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
-    apply plugin: 'pmd'
-    apply plugin: 'findbugs'
     apply plugin: "net.saliman.cobertura"
     apply plugin: 'io.spring.dependency-management'
 
@@ -51,34 +49,11 @@ subprojects {
         }
     }
 
-    tasks.withType(FindBugs) {
-        reports {
-            xml.enabled false
-            html.enabled true
-        }
-    }
-
     tasks.withType(Checkstyle) {
         reports {
             xml.enabled false
             html.enabled true
         }
-    }
-
-    tasks.withType(Pmd) {
-        reports {
-            xml.enabled false
-            html.enabled true
-        }
-    }
-
-    task fatJar(type: Jar) {
-        manifest {
-            //attributes 'Main-Class': 'com.Main'
-        }
-        baseName = project.name + '-all'
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-        with jar
     }
 
     dependencies {
@@ -91,5 +66,21 @@ subprojects {
     checkstyle {
         toolVersion = CHECKSTYLE_VERSION
         config = rootProject.resources.text.fromFile("config/checkstyle/checkstyle.xml")
+    }
+}
+
+subprojects.each { subproject -> evaluationDependsOn(subproject.path)}
+
+task allJar(type: Jar, dependsOn: subprojects.assemble) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        'Implementation-Version': '1.0',
+        'Main-Class': 'org.checkers.app.Checkers'
+    }
+    baseName = project.name + '-all'
+    subprojects.each { subproject ->
+      from subproject.configurations.archives.allArtifacts.files.collect {
+         it.isDirectory() ? it : zipTree(it)
+      }
     }
 }
