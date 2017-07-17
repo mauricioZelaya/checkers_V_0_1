@@ -98,7 +98,7 @@ public class MatrixTest
     @Test
     public void testSelectedGamePieceChangesForValue2AtB8() {
         matrix.initMatrixToDefaultState();
-        assertEquals(2, matrix.getValueAtCoordinates("B6"));
+        assertEquals(2, matrix.getValueAtCoordinates("B8"));
         matrix.toggleSelectedGamePiece("B8");
         assertEquals(20, matrix.getValueAtCoordinates("B8"));
     }
