@@ -8,6 +8,8 @@ build-project:
   script:
     - ./gradlew build
     - ./gradlew allJar
+  artifacts:
+    expire_in: 1 week
   only:
     - develop, feature/CHK-013-GitLab-CI-CD
 
