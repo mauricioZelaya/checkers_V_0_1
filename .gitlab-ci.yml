@@ -5,6 +5,7 @@ stages:
   - package
 
 before_script:
+  - sdk install gradle 4.0.1
   - chmod +x gradlew
 
 build-project:
