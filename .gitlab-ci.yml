@@ -1,17 +1,23 @@
 image: java:8-jdk
 
+stages:
+  - build
+  - package
+
 before_script:
-  - sdk install gradle 4.0.1
   - chmod +x gradlew
 
-build_project:
+build-project:
+  stage: build
   script:
     - ./gradlew build
-    - ./gradlew allJar
-  artifacts:
-    expire_in: 1 week
   only:
     - develop, feature/CHK-013-GitLab-CI-CD
+
+package-jar:
+  stage: package
+  script:
+    - ./gradlew allJar
 
 after_script:
   - echo "Checkers is up"
