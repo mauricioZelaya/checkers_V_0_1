@@ -11,10 +11,15 @@ import static org.junit.Assert.*;
 public class CheckersGameRulesTest {
 
     private CheckersGameRules checkerGame;
+    private int firstMatrix[][];
 
+    /**
+     * initial settings needed along the execution of all unit tests
+     */
     @Before
     public void initialSettings(){
         checkerGame = new CheckersGameRules();
+        firstMatrix = new int[8][8];
     }
 
     /**
@@ -22,7 +27,6 @@ public class CheckersGameRulesTest {
      */
     @Test
     public void movementIsValid() {
-        int firstMatrix[][] = new int[8][8];
         firstMatrix[4][3] = 0;
         assertTrue(checkerGame.isEmptyTile(5, 2, firstMatrix));
     }
@@ -32,7 +36,6 @@ public class CheckersGameRulesTest {
      */
     @Test
     public void movementIsInvalid() {
-        int firstMatrix[][] = new int[8][8];
         firstMatrix[4][4] = 9;
         assertFalse(checkerGame.isEmptyTile(4, 4, firstMatrix));
     }
@@ -42,7 +45,7 @@ public class CheckersGameRulesTest {
      */
     @Test
     public void validDirectionNorth(){
-        assertTrue(checkerGame.isValidDirection(1,6,7));
+        assertTrue(checkerGame.isValidDirection(10,7,6));
     }
 
     /**
@@ -50,7 +53,7 @@ public class CheckersGameRulesTest {
      */
     @Test
     public void validDirectionSouth(){
-        assertTrue(checkerGame.isValidDirection(2,3,2));
+        assertTrue(checkerGame.isValidDirection(20,2,3));
     }
 
     /**
@@ -73,18 +76,41 @@ public class CheckersGameRulesTest {
     public void crownToTheChip(){
         int playerNumber = 2;
         int row = 0;
-        assertTrue(checkerGame.crownedChip(playerNumber, row));
+        assertTrue(checkerGame.crownTheChip(playerNumber, row));
     }
 
     @Test
     public void aChipIsEatableByOpponent(){
         int row = 5;
         int col = 2;
-        int firstMatrix[][] = new int[8][8];
         firstMatrix[5][2] = 1;
         firstMatrix[4][3] = 2;
         firstMatrix[3][4] = 0;
         assertTrue(checkerGame.killOpponent(row, col, firstMatrix));
     }
 
+    @Test
+    public void theChipIsACrownedChip(){
+        int tileValue = 3;
+        assertTrue(checkerGame.isCrownedChip(tileValue));
+    }
+
+    @Test
+    public void aCrownedChipIsAbleToMoveInAnyDirection(){
+        int row = 4;
+        int col = 3;
+        int tileValue = 4;
+        firstMatrix[5][2] = 1;
+        firstMatrix[5][4] = 1;
+        firstMatrix[3][2] = 2;
+        firstMatrix[3][4] = 0;
+        assertTrue(checkerGame.crownedValidMove(row, col, firstMatrix));
+    }
+
+    @Test
+    public void isThePlayerTurn(){
+        int playerTurn = 1;
+        assertTrue(checkerGame.playerTurn(playerTurn));
+
+    }
 }

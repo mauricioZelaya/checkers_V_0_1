@@ -13,9 +13,10 @@ public class CheckersGameRules implements IBoardGamesRules {
 
     @Override
     public boolean isValidDirection(int playerChip, int initRow, int endRow) {
-        if (playerChip == 1) {
+        if (playerChip == 10) {
             return toNorth(initRow, endRow);
-        } else if (playerChip == 2) {
+        }
+        if (playerChip == 20) {
             return toSouth(initRow, endRow);
         }
         return false;
@@ -32,13 +33,33 @@ public class CheckersGameRules implements IBoardGamesRules {
      * @return - return true if chip will be crowned
      */
     @Override
-    public boolean crownedChip(int playerNumber, int row) {
+    public boolean crownTheChip(int playerNumber, int row) {
         return (playerNumber == 1 && row == 7) || (playerNumber == 2 && row == 0);
     }
 
     @Override
     public boolean killOpponent(int initRow, int initCol, int matrix[][]) {
         return chipInFront(initRow, initCol, matrix) && (isValidTile(matrix[initRow + 2][initCol + 2]) || isValidTile(matrix[initRow + 2][initCol - 2]));
+    }
+
+    @Override
+    public boolean crownedKillOpponent(int initRow, int initCol, int[][] matrix) {
+        return false;
+    }
+
+    @Override
+    public boolean isCrownedChip(int tileValue) {
+        return tileValue == 3 || tileValue == 4;
+    }
+
+    @Override
+    public boolean crownedValidMove(int row, int col, int[][] matrix) {
+        return matrix[row+1][col+1] == 0 || matrix[row+1][col-1] == 0 || matrix[row-1][col+1] == 0 || matrix[row-1][col-1] == 0;
+    }
+
+    @Override
+    public boolean playerTurn(int playerTurn) {
+        return playerTurn == 1;
     }
 
     private boolean chipInFront(int initRow, int initCol, int matrix[][]) {
@@ -58,11 +79,11 @@ public class CheckersGameRules implements IBoardGamesRules {
      * @return boolean value according the evaluation
      */
     private boolean toSouth(int initRow, int endRow) {
-        return initRow > endRow;
+        return initRow < endRow;
     }
 
     private boolean toNorth(int initRow, int endRow) {
-        return initRow < endRow;
+        return initRow > endRow;
     }
 
 }
