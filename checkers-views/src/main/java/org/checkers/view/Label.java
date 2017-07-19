@@ -1,16 +1,15 @@
-package org.checkers.model;
+package org.checkers.view;
 
-import org.checkers.model.component.AbstractShape;
-
-import java.awt.Color;
+import org.checkers.view.component.AbstractShape;
 import java.awt.Graphics;
 import java.awt.FontMetrics;
 
 /**
- * Write a description of class Label here.
+ * [ VIEW ]
+ *Concrete Label shape, draws a label and allows working with it.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Leonardo Antezana)
+ * @version (July 2017)
  */
 public class Label extends AbstractShape {
     private String label;
@@ -48,4 +47,7 @@ public class Label extends AbstractShape {
     public void toggleState() {
     }
 
+    @Override
+    public void crownShape() {
+    }
 }

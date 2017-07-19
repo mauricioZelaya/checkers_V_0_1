@@ -1,16 +1,17 @@
-package org.checkers.model.component;
+package org.checkers.view.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
 /**
- * Abstract class AbstractShape - write a description of the class here
+ * [ VIEW ]
+ * Abstract class AbstractShape allows more generic and extendable shapes.
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author (Done in class)
+ * @version (June 2017)
  */
 public abstract class AbstractShape {
 
-    protected int x; //(x, y) define the center of shape
+    protected int x; //(x, y) define the center coordinates of shape
     protected int y;
     protected Color color;
 
@@ -19,21 +20,16 @@ public abstract class AbstractShape {
     public abstract int getValue(); //this was used for compare, returns unique radius/side value
     public abstract void setValue(int value);
     public abstract void toggleState();
+    public abstract void crownShape();
 
-    protected AbstractShape(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
-
-    protected AbstractShape(int x, int y, Color color) {
-      this.x = x;
-      this.y = y;
-      this.color = color;
+    public AbstractShape(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void draw(Graphics g) {
-        g.setColor(color);
-        drawShape(g);
+       g.setColor(color);
+       drawShape(g);
     }
 
     public void setColor(Color color){
@@ -42,10 +38,6 @@ public abstract class AbstractShape {
 
     public Color getColor() {
         return color;
-    }
-
-    public int getX() {
-        return x;
     }
 
     public void setX(int x) {
@@ -65,4 +57,3 @@ public abstract class AbstractShape {
         this.y = y;
     }
 }
-

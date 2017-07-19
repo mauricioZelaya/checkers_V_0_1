@@ -1,28 +1,30 @@
-package org.checkers.model.component;
+package org.checkers.view.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * Write a description of class Circle here.
+ * [ VIEW ]
+ *Concrete Circle shape, draws a circle and allows working with it.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Done in class)
+ * @version (June 2017)
  */
 public class Circle extends AbstractShape {
 
     protected int radius;
 
     public Circle(int x, int y) {
-        super(x, y);
-        radius = 25;
+       super(x, y);
+       setColor(Color.blue);
+       //radius = 25;
     }
 
     @Override
     public boolean isInsideShape(int x, int y) {
         int xCenter = this.x;
         int yCenter = this.y;
-        double d = StrictMath.hypot(yCenter - y, xCenter - x);
+        double d = Math.hypot(yCenter - y, xCenter - x);
         return d <= radius;
     }
 
@@ -45,5 +47,8 @@ public class Circle extends AbstractShape {
     @Override
     public void toggleState() {
     }
-}
 
+    @Override
+    public void crownShape() {
+    }
+}
