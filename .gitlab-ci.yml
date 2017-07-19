@@ -2,28 +2,27 @@ image: java:8-jdk
 
 stages:
   - build
-  - package
+  - deploy
 
 before_script:
   - wget https://services.gradle.org/distributions/gradle-4.0.1-bin.zip
   - mkdir /opt/gradle
   - unzip -d /opt/gradle gradle-4.0.1-bin.zip
   - export PATH=$PATH:/opt/gradle/gradle-4.0.1/bin
-  - gradle -v
   - gradle wrapper
   - chmod +x gradlew
 
-build-project:
+build:
   stage: build
   script:
     - ./gradlew build
-  only:
-    - develop, feature/CHK-013-GitLab-CI-CD
 
-package-jar:
-  stage: package
+deploy:
+  stage: deploy
   script:
     - ./gradlew allJar
+  only:
+    - develop
 
 after_script:
-  - echo "Checkers is up"
+  - echo "Checkers is up!"
