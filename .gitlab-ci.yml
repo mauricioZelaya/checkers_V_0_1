@@ -1,14 +1,10 @@
-image: java:8-jdk
+image: java:8
 
 stages:
   - build
   - package
 
 before_script:
-  - wget https://services.gradle.org/distributions/gradle-4.0.1-bin.zip
-  - mkdir /opt/gradle
-  - unzip -d /opt/gradle gradle-4.0.1-bin.zip
-  - export PATH=$PATH:/opt/gradle/gradle-4.0.1/bin
   - gradle -v
   - chmod +x gradlew
 
