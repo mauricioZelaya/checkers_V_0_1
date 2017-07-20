@@ -1,5 +1,6 @@
 package org.checkers.app;
 
+import org.checkers.controller.FileController;
 import org.checkers.view.DrawingPanel;
 import org.checkers.view.MenuBar;
 
@@ -15,12 +16,16 @@ public class DrawingWindow extends JFrame
    private DrawingPanel panel;
    private MenuBar menuBar;
 
+   protected FileController controller;
+
    public DrawingWindow(String title) {
        super(title);
 
        panel = new DrawingPanel();
 
        menuBar = new MenuBar();
+
+       controller = new FileController(menuBar);
 
        setJMenuBar(menuBar.getMenuBar());
        
