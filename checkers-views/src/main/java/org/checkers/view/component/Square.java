@@ -1,25 +1,25 @@
-package org.checkers.model.component;
+package org.checkers.view.component;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * Write a description of class Square here.
+ * [ VIEW ]
+ * Concrete Square shape, draws a square and allows working with it.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Done in class)
+ * @version (June 2017)
  */
 public class Square extends AbstractShape {
 
     private int side;
 
     public Square(int x, int y) {
-        super(x, y);
+       super(x, y);
     }
 
     @Override
     public boolean isInsideShape(int x, int y) {
-        return x>=this.x-side/2 && x <= this.x+side/2 && y>=this.y-side/2 && y <= this.y+side/2;
+       return (x>=this.x-side/2 && x <= this.x+side/2) && (y>=this.y-side/2 && y <= this.y+side/2);
     }
 
     //getSide
@@ -40,5 +40,9 @@ public class Square extends AbstractShape {
 
     @Override
     public void toggleState() {
+    }
+
+    @Override
+    public void crownShape() {
     }
 }

@@ -2,34 +2,44 @@ package org.checkers.app;
 
 import org.checkers.controller.FileController;
 import org.checkers.view.DrawingPanel;
+import org.checkers.view.PlayerView;
 import org.checkers.view.MenuBar;
+import org.checkers.controller.PlayerController;
+import org.checkers.model.Player;
 
+import java.awt.*;
 import javax.swing.JFrame;
+
 /**
- * Write a description of class DrawingWindow here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Updated by Kenneth on 7/11/2017.
+ * Added the proper container to display the view of the player along with the view of the drawing
  */
-public class DrawingWindow extends JFrame
-{
-   private DrawingPanel panel;
-   private MenuBar menuBar;
+public class DrawingWindow extends JFrame {
+  // Creation of the Drawing Panel (The board)
+  private DrawingPanel panel = new DrawingPanel();
+  private MenuBar menuBar;
 
-   protected FileController controller;
+  // Creation of the controller
+  private PlayerController miPlayerController;
 
-   public DrawingWindow(String title) {
-       super(title);
+  //Drawing window construction
+  public DrawingWindow(String title) {
+    super(title);
+    setLayout(new BorderLayout());
 
-       panel = new DrawingPanel();
+    protected FileController controller;
 
-       menuBar = new MenuBar();
+      Player miPlayerOne = new Player(1);
+      Player miPlayerTwo = new Player(2);
+      PlayerView newView = new PlayerView();
+      PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
 
-       controller = new FileController(menuBar);
+      menuBar = new MenuBar();
+      setJMenuBar(menuBar.getMenuBar());
+      add(panel, BorderLayout.CENTER);
+      add(newView, BorderLayout.EAST);
 
-       setJMenuBar(menuBar.getMenuBar());
-       
-       panel.setSize(300, 300);
-       getContentPane().add(panel);
-   }
-}
+      controller = new FileController(menuBar);
+
+    }
+  }
