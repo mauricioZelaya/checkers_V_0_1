@@ -1,15 +1,15 @@
-package org.checkers.view;
+package org.checkers.controller;
 
-import org.checkers.controller.MovementGestor;
-import org.checkers.model.Board;
+
 import org.checkers.model.Movement;
+import org.checkers.view.Board;
 
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 /**
  * Write a description of class DrawingPanel here.
  *
@@ -33,6 +33,7 @@ public class DrawingPanel extends JPanel {
     private int moveCycle = 0;
 
     private Movement m = new Movement();
+    private MovementGestor mg = new MovementGestor();
 
     public DrawingPanel(){
         setBackground(Color.GRAY);
@@ -42,7 +43,7 @@ public class DrawingPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                MovementGestor.movTileChip(board, event, m);
+//                MovementGestor.movTileChip(board, event, m);
                 repaint();
             }
         });
@@ -52,6 +53,5 @@ public class DrawingPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         board.drawShape(g);
-
     }
 }

@@ -1,9 +1,10 @@
 package org.checkers.controller;
 
-import org.checkers.model.Board;
 import org.checkers.model.Movement;
+import org.checkers.view.Board;
 
 import java.awt.event.MouseEvent;
+
 
 /**
  * Created by Administrator on 6/30/2017.
@@ -21,8 +22,8 @@ public class MovementGestor {
 
         if ((!m.getFromXY().equals("")) && (!m.getToXY().equals(""))) {
             //TODO: rules.
-            board.toggleGamePieceState(m.getFromXY());
-            board.moveGamePiece(m.getFromXY(), m.getToXY(), "");
+//            board.toggleGamePieceState(m.getFromXY());
+//            board.moveGamePiece(m.getFromXY(), m.getToXY(), "");
 //            board.hideChip(m.getFromXY());
 //            board.showChip(m.getToXY());
 

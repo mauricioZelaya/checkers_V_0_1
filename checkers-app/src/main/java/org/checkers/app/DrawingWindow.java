@@ -1,14 +1,14 @@
 package org.checkers.app;
 
+import org.checkers.controller.DrawingPanel;
 import org.checkers.controller.FileController;
-import org.checkers.view.DrawingPanel;
 import org.checkers.view.PlayerView;
 import org.checkers.view.MenuBar;
 import org.checkers.controller.PlayerController;
 import org.checkers.model.Player;
 
-import java.awt.*;
 import javax.swing.JFrame;
+import java.awt.BorderLayout;
 
 /**
  * Updated by Kenneth on 7/11/2017.
@@ -22,24 +22,24 @@ public class DrawingWindow extends JFrame {
   // Creation of the controller
   private PlayerController miPlayerController;
 
-  //Drawing window construction
-  public DrawingWindow(String title) {
+  /**
+   * Drawing window construction.
+   * @param title title value.
+   */
+  public DrawingWindow(final String title) {
     super(title);
     setLayout(new BorderLayout());
-
-    protected FileController controller;
 
       Player miPlayerOne = new Player(1);
       Player miPlayerTwo = new Player(2);
       PlayerView newView = new PlayerView();
-      PlayerController miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
+      miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
 
       menuBar = new MenuBar();
       setJMenuBar(menuBar.getMenuBar());
       add(panel, BorderLayout.CENTER);
       add(newView, BorderLayout.EAST);
 
-      controller = new FileController(menuBar);
-
+      FileController controller = new FileController(menuBar);
     }
   }

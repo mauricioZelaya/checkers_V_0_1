@@ -1,35 +1,60 @@
 package org.checkers.model;
 
+import org.checkers.view.Board;
+
 import java.awt.event.MouseEvent;
 
 /**
- * Created by Administrator on 6/30/2017.
+ * Entity class for movements.
  */
 public class Movement {
+    /**
+     * Variables.
+     */
     private String fromXY = "", toXY = "";
 
-    public void setFromXY(String newFromXY) {
+    /**
+     * @param newFromXY coordinates.
+     */
+    public void setFromXY(final String newFromXY) {
         this.fromXY = newFromXY;
     }
 
-    public void setToXY(String newToXY) {
+    /**
+     * @param newToXY coordinates
+     */
+    public void setToXY(final String newToXY) {
         this.toXY = newToXY;
     }
 
+    /**
+     * @return {@link #fromXY}
+     */
     public String getFromXY() {
         return fromXY;
     }
 
+    /**
+     * @return {@link #toXY}
+     */
     public String getToXY() {
         return toXY;
     }
 
-    public void getNext(Board board, MouseEvent event) {
-        setToXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
+    /**
+     * @param board has board values.
+     * @param event has event from mouse values.
+     */
+    public void getNext(final Board board, final MouseEvent event) {
+//        setToXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
     }
 
-    public void getPrevious(Board board, MouseEvent event) {
-        setFromXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
+    /**
+     * @param board has board values
+     * @param event has even from mouse values.
+     */
+    public void getPrevious(final Board board, final MouseEvent event) {
+//        setFromXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
         board.toggleGamePieceState(getFromXY());
     }
 }
