@@ -1,6 +1,6 @@
 package org.checkers.app;
 
-import org.checkers.controller.DrawingPanel;
+import org.checkers.view.DrawingPanel;
 import org.checkers.controller.FileController;
 import org.checkers.controller.MovementGestor;
 import org.checkers.model.InterfaceMatrix;
@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 
 /**
  * Updated by Kenneth on 7/11/2017.
+ * Updated by Susana on 7/20/2017.
  * Added the proper container to display the view of the player along with the view of the drawing
  */
 public class DrawingWindow extends JFrame {

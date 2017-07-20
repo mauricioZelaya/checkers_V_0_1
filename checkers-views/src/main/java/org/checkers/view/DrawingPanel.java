@@ -1,20 +1,14 @@
-package org.checkers.controller;
-
-
-import org.checkers.model.Movement;
-import org.checkers.view.Board;
+package org.checkers.view;
 
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Write a description of class DrawingPanel here.
  *
- * @author (your name).
- * @version (a version number or a date).
+ * @author not known (the owner should update it).
+ * Updated by Susana on 7/20/2017.
  */
 public class DrawingPanel extends JPanel {
 

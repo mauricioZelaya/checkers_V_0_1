@@ -1,6 +1,7 @@
 package org.checkers.model;
 
 /**
+ * Updated by Susana on 7/20/2017.
  * Entity class for movements.
  */
 public class Movement {

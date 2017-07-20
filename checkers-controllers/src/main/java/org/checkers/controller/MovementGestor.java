@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 
 /**
+ * Updated by Susana on 7/20/2017.
  * Class to admin the movements.
  */
 public class MovementGestor extends MouseAdapter {
