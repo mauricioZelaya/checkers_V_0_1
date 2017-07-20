@@ -21,8 +21,6 @@ deploy-project:
   stage: deploy-project
   script:
     - ./gradlew allJar
-  artifacts:
-    expire_in: 1 week
 
 after_script:
   - echo "Checkers is up!"
