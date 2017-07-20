@@ -39,14 +39,6 @@ public class DrawingPanel extends JPanel {
         setBackground(Color.GRAY);
         board = new Board(50, 50, 50, 8);
         board.placePieces(boardTest);
-
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent event) {
-//                MovementGestor.movTileChip(board, event, m);
-                repaint();
-            }
-        });
     }
 
     @Override
