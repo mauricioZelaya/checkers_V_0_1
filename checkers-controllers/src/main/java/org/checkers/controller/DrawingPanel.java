@@ -32,9 +32,6 @@ public class DrawingPanel extends JPanel {
     private int yLast=0;
     private int moveCycle = 0;
 
-    private Movement m = new Movement();
-    private MovementGestor mg = new MovementGestor();
-
     public DrawingPanel(){
         setBackground(Color.GRAY);
         board = new Board(50, 50, 50, 8);
