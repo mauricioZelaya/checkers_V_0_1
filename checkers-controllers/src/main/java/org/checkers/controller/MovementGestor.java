@@ -1,37 +1,47 @@
 package org.checkers.controller;
 
+import org.checkers.model.InterfaceMatrix;
 import org.checkers.model.Movement;
-import org.checkers.view.Board;
 
+import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
 /**
- * Created by Administrator on 6/30/2017.
+ * Class to admin the movements.
  */
-public class MovementGestor {
+public class MovementGestor extends MouseAdapter {
 
-    public static void movTileChip(Board board, MouseEvent event, Movement m) {
-        //this is to set the values for "m.setFromXY()" and "m.setToXY()".
-        if (m.getFromXY() == "") {
-            m.getPrevious(board, event);
-        } else if (m.getToXY() == "") {
-            m.getNext(board, event);
+    private final JPanel panel;
+    private final InterfaceMatrix matrix;
+    private final Movement movement;
+
+    /**
+     * Constructor.
+     *
+     * @param newPanel  an instance of {@link JPanel}.
+     * @param newMatrix an instance of {@link InterfaceMatrix}.
+     */
+    public MovementGestor(final JPanel newPanel, final InterfaceMatrix newMatrix) {
+        this.panel = newPanel;
+        this.matrix = newMatrix;
+        movement = new Movement();
+        newPanel.addMouseListener(this);
+    }
+
+    /**
+     * To overrides the mouse clicked class.
+     *
+     * @param event an instance of {@link MouseEvent}
+     */
+    @Override
+    public void mouseClicked(final MouseEvent event) {
+        if (matrix.hasSelectedPiece()) {
+            movement.movePiece(matrix, event.getX(), event.getY());
+        } else {
+            movement.selectPiece(matrix, event.getX(), event.getY());
         }
-
-
-        if ((!m.getFromXY().equals("")) && (!m.getToXY().equals(""))) {
-            //TODO: rules.
-//            board.toggleGamePieceState(m.getFromXY());
-//            board.moveGamePiece(m.getFromXY(), m.getToXY(), "");
-//            board.hideChip(m.getFromXY());
-//            board.showChip(m.getToXY());
-
-            //TODO: to get the historical.
-            System.out.println(String.format("[%s] m [%s]", m.getFromXY(), m.getToXY()));
-
-            m.setFromXY("");
-            m.setToXY("");
-        }
+        panel.repaint();
     }
 }

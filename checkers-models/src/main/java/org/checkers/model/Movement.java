@@ -1,60 +1,86 @@
 package org.checkers.model;
 
-import org.checkers.view.Board;
-
-import java.awt.event.MouseEvent;
-
 /**
  * Entity class for movements.
  */
 public class Movement {
-    /**
-     * Variables.
-     */
-    private String fromXY = "", toXY = "";
+    private int getCoordinate = 0;
+    private String fromXY = "";
+    private String toXY = "";
+
+    private int mouseX;
+    private int mouseY;
 
     /**
-     * @param newFromXY coordinates.
+     * This method is to have coordinates of X and Y from mouse.
+     *
+     * @param matrix    an instance of {@link InterfaceMatrix}.
+     * @param newMouseX has mouse X value.
+     * @param newMouseY has the mouse Y value.
      */
-    public void setFromXY(final String newFromXY) {
-        this.fromXY = newFromXY;
+    public void selectPiece(final InterfaceMatrix matrix, final int newMouseX, final int newMouseY) {
+        this.mouseX = newMouseX;
+        this.mouseY = newMouseY;
+
+        selectGamePiece(matrix);
     }
 
     /**
-     * @param newToXY coordinates
+     * This method is to have move the piece.
+     *
+     * @param matrix    an instance of {@link InterfaceMatrix}.
+     * @param newMouseX has mouse X value.
+     * @param newMouseY has the mouse Y value.
      */
-    public void setToXY(final String newToXY) {
-        this.toXY = newToXY;
+    public void movePiece(final InterfaceMatrix matrix, final int newMouseX, final int newMouseY) {
+        this.mouseX = newMouseX;
+        this.mouseY = newMouseY;
+
+        selectedDestinationTile(matrix);
+
+        if (!fromXY.equals(toXY) && !toXY.equals("")) {
+            matrix.moveGamePiece(fromXY, toXY, "");
+        }
+
+        matrix.toggleSelectedGamePiece(toXY);
+        resetMovement();
     }
 
     /**
-     * @return {@link #fromXY}
+     * This method is to select a piece on the game.
+     *
+     * @param newMatrix an instance of {@link InterfaceMatrix}.
      */
-    public String getFromXY() {
-        return fromXY;
+    private void selectGamePiece(final InterfaceMatrix newMatrix) {
+        fromXY = newMatrix.getCoordinatesAtXY(mouseX, mouseY);
+
+        if (!fromXY.equals("")) {
+            newMatrix.toggleSelectedGamePiece(fromXY);
+            getCoordinate = 1;
+        } else {
+            fromXY = "";
+        }
     }
 
     /**
-     * @return {@link #toXY}
+     * This method is to select the destination Tile.
+     *
+     * @param newMatrix has matrix values.
      */
-    public String getToXY() {
-        return toXY;
+    private void selectedDestinationTile(final InterfaceMatrix newMatrix) {
+        toXY = newMatrix.getCoordinatesAtXY(mouseX, mouseY);
+
+        if (!toXY.equals("")) {
+            getCoordinate = 2;
+        }
     }
 
     /**
-     * @param board has board values.
-     * @param event has event from mouse values.
+     * This method is to reset the movements.
      */
-    public void getNext(final Board board, final MouseEvent event) {
-//        setToXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
-    }
-
-    /**
-     * @param board has board values
-     * @param event has even from mouse values.
-     */
-    public void getPrevious(final Board board, final MouseEvent event) {
-//        setFromXY(board.getCoordinatesAtXY(event.getX(), event.getY()));
-        board.toggleGamePieceState(getFromXY());
+    private void resetMovement() {
+        fromXY = "";
+        toXY = "";
+        getCoordinate = 0;
     }
 }
