@@ -1,8 +1,7 @@
 image: java:8-jdk
 
 stages:
-  - build-project
-  - deploy-project
+  - build
 
 before_script:
   - wget https://services.gradle.org/distributions/gradle-4.0.1-bin.zip
@@ -12,15 +11,13 @@ before_script:
   - gradle wrapper
   - chmod +x gradlew
 
-build-project:
-  stage: build-project
+build:
+  stage: build
   script:
     - ./gradlew build
-
-deploy-project:
-  stage: deploy-project
-  script:
     - ./gradlew allJar
+  artifacts:
+    expire_in: 1 week
 
 after_script:
   - echo "Checkers is up!"
