@@ -19,7 +19,7 @@ build:
     - ./gradlew assemble
 
 test:
-  stage: build
+  stage: test
   script:
     - ./gradlew check
 
