@@ -1,0 +1,34 @@
+image: java:8-jdk
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - wget https://services.gradle.org/distributions/gradle-4.0.1-bin.zip
+  - mkdir /opt/gradle
+  - unzip -d /opt/gradle gradle-4.0.1-bin.zip
+  - export PATH=$PATH:/opt/gradle/gradle-4.0.1/bin
+  - gradle wrapper
+  - chmod +x gradlew
+
+build:
+  stage: build
+  script:
+    - ./gradlew assemble
+
+test:
+  stage: test
+  script:
+    - ./gradlew check
+
+deploy:
+  stage: deploy
+  script:
+    - ./gradlew allJar
+  artifacts:
+    expire_in: 1 week
+
+after_script:
+  - echo "Checkers is up!"
