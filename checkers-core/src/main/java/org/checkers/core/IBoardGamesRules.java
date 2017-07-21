@@ -7,6 +7,10 @@ public interface IBoardGamesRules {
     boolean isEmptyTile(int row, int col, int matrix[][]);
     boolean isValidDirection(int playerChip, int initRow, int endRow);
     boolean isValidTile(int tileValue);
-    boolean crownedChip(int playerNumber, int row);
+    boolean crownTheChip(int playerNumber, int row);
     boolean killOpponent(int initRow, int initCol, int[][] matrix);
+    boolean crownedKillOpponent(int initRow, int initCol, int[][] matrix);
+    boolean isCrownedChip(int tileValue);
+    boolean crownedValidMove(int row, int col, int[][] matrix);
+    boolean playerTurn(int playerTurn);
 }
