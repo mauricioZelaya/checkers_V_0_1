@@ -12,6 +12,9 @@ public class CheckersGameRulesTest {
 
     private CheckersGameRules checkerGame;
     private int firstMatrix[][];
+    private int row;
+    private int col;
+    private int playerNumber;
 
     /**
      * initial settings needed along the execution of all unit tests
@@ -74,15 +77,15 @@ public class CheckersGameRulesTest {
 
     @Test
     public void crownToTheChip(){
-        int playerNumber = 2;
-        int row = 0;
+        playerNumber = 2;
+        row = 0;
         assertTrue(checkerGame.crownTheChip(playerNumber, row));
     }
 
     @Test
     public void aChipIsEatableByOpponent(){
-        int row = 5;
-        int col = 2;
+        row = 5;
+        col = 2;
         firstMatrix[5][2] = 1;
         firstMatrix[4][3] = 2;
         firstMatrix[3][4] = 0;
@@ -97,9 +100,8 @@ public class CheckersGameRulesTest {
 
     @Test
     public void aCrownedChipIsAbleToMoveInAnyDirection(){
-        int row = 4;
-        int col = 3;
-        int tileValue = 4;
+        row = 4;
+        col = 3;
         firstMatrix[5][2] = 1;
         firstMatrix[5][4] = 1;
         firstMatrix[3][2] = 2;
@@ -111,6 +113,15 @@ public class CheckersGameRulesTest {
     public void isThePlayerTurn(){
         int playerTurn = 1;
         assertTrue(checkerGame.playerTurn(playerTurn));
+    }
 
+    @Test
+    public void crownedChipEatOpponentChip(){
+        row = 3;
+        col = 4;
+        firstMatrix[2][5] = 2;
+        firstMatrix[3][4] = 3;
+        firstMatrix[1][6] = 0;
+        assertTrue(checkerGame.crownedKillOpponent(row, col, firstMatrix));
     }
 }
