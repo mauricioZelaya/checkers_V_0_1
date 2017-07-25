@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.checkers.core.ReadFile;
 import org.checkers.core.WriteFile;
 
 /**
@@ -12,7 +13,7 @@ import org.checkers.core.WriteFile;
 public class HistoryModel {
 
   private final List<String> history;
-
+  private WriteFile writeFile;
 
   public HistoryModel() {
     history = new ArrayList<>();
@@ -27,8 +28,13 @@ public class HistoryModel {
     return history;
   }
 
-  public boolean saveGameState(InterfaceMatrix matrix, File file){
-    WriteFile writeFile = new WriteFile(file);
+  /**
+   * This method save the last game state in a file
+   * @param matrix InterfaceMatrix
+   * @param file file create in the Menu
+   */
+  public void saveGameState(InterfaceMatrix matrix, File file){
+    writeFile = new WriteFile(file);
 
     int [][] matrixToSave = matrix.getMatrix();
 
@@ -42,7 +48,27 @@ public class HistoryModel {
             writeFile.saveHistory(rowString);
             System.out.println(rowString);
         }
-
-    return false;
   }
+
+  /**
+   * This method clear the file content
+   * @param file file select in the Menu
+   */
+  public void clearExistFile(File file){
+    writeFile = new WriteFile(file);
+    writeFile.clearFile();
+  }
+
+  /**
+   * This method recive the File selected in the Menu and create an array of integers
+   * @param matrix intefaceMatrix
+   * @param file recive the file selected in the Menu
+   * @return a new array matrix.
+   */
+  public  int[][]  loadGameState(InterfaceMatrix matrix, File file){
+    ReadFile read = new ReadFile();
+    List<String> loadFileRows = read.ReadFiles(file);
+    return read.getLoadFile(loadFileRows);
+  }
+
 }

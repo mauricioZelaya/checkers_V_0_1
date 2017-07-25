@@ -46,12 +46,20 @@ public class Matrix extends Observable implements InterfaceMatrix {
     setChanged(); //set change has been done for observers
     notifyObservers(getMatrix()); //notify observers of change and send matrix new state
   }
+ /**
+   * This method provides the new state of the matrix List with an matrix read from a file
+   */
+  @Override
+  public void repaintMatrix(int[]... newMatrix){
+    setChanged(); //set change has been done for observers
+    notifyObservers(newMatrix); //notify observers of change and send matrix new state
+  }
 
   /**
    * Initializes the Matrix array with the values of an integer matrix. It receives the default board state when used in the Constructor.
    */
   @Override
-  public void setMatrix(int[][] newMatrix) {
+  public void setMatrix(int[]... newMatrix) {
     for (int row = 0; row <= 7; row++) {
       for (int column = 0; column <= 7; column++) {
         matrix.add(newMatrix[row][column]);
@@ -155,6 +163,7 @@ public class Matrix extends Observable implements InterfaceMatrix {
     return Utils.coordinatesFromColRow(column, row);
   }
 
+  @Override
   public void printMatrix() {
     for (int i = 0; i <= 63; i++) {
       if (matrix.get(i) != 9) {

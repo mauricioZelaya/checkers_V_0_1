@@ -36,4 +36,25 @@ public class ReadFile {
 
     return listString;
   }
+
+  /**
+   * This Method create a new Matrix with in base a List String
+   * @param rows List<string> List of coordenates read from file
+   * @return a integer array
+   */
+  public int[][] getLoadFile(List<String> rows) {
+    int[][] newMatrix = new int[8][8];
+
+    for (int row = 0; row <= 7; row++) {
+
+        String getRow = rows.get(row);
+
+        String[] split = getRow.split(",");
+
+        for (int column = 0; column <= 7; column++) {
+          newMatrix[row][column] = Integer.parseInt(split[column]);
+        }
+    }
+    return newMatrix;
+  }
 }

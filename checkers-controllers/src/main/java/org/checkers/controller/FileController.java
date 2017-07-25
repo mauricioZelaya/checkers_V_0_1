@@ -3,7 +3,12 @@ package org.checkers.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
+import javax.swing.JPanel;
+
+import org.checkers.model.HistoryModel;
+import org.checkers.model.InterfaceMatrix;
 import org.checkers.view.DialogFactory;
 import org.checkers.view.FileChooserFactory;
 import org.checkers.view.MenuBar;
@@ -16,13 +21,17 @@ import org.checkers.view.util.MenuItem;
 public class FileController implements ActionListener {
 
   private final MenuBar menuBar;
+  private final InterfaceMatrix matrix;
+  private final JPanel panel;
 
   /**
    * Contructor of FileController class. It requires a MenuBar view to be initialized.
    * @param menuBar  The MenuBar view
    */
-  public FileController(MenuBar menuBar) {
+  public FileController(final JPanel panel, MenuBar menuBar, final InterfaceMatrix matrix) {
     this.menuBar = menuBar;
+    this.matrix = matrix;
+    this.panel = panel;
     addListeners();
   }
 
@@ -33,6 +42,7 @@ public class FileController implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     String selectedItem = e.getActionCommand();
+
     switch (e.getActionCommand()) {
       case MenuItem.FILE_NEW_GAME:
         newGame();
@@ -42,6 +52,7 @@ public class FileController implements ActionListener {
         break;
       case MenuItem.FILE_LOAD_GAME:
         loadGame();
+
         break;
       case MenuItem.FILE_SAVE_REPLAY:
         saveReplay();
@@ -76,8 +87,22 @@ public class FileController implements ActionListener {
   protected void saveGame() {
     File file = FileChooserFactory.getFile(MenuItem.FILE_SAVE_GAME);
     if (file != null) {
-      // Replace following line with correct behaviour
+      HistoryModel model = new HistoryModel();
+      model.clearExistFile(file);
+      model.saveGameState(matrix, file);
       System.out.println("Send file to HistoryBoard");
+    }
+    if(!file.exists())
+    {
+      try {
+        file.createNewFile();
+
+        HistoryModel model = new HistoryModel();
+        model.saveGameState(matrix, file);
+        System.out.println("Send file to HistoryBoard");
+      } catch (IOException e) {
+        System.err.print(e.getMessage());
+      }
     }
   }
 
@@ -87,10 +112,16 @@ public class FileController implements ActionListener {
    */
   protected void loadGame() {
     File file = FileChooserFactory.getFile(MenuItem.FILE_LOAD_GAME);
+
     if (file != null) {
-      // Replace following line with correct behaviour
+      HistoryModel model = new HistoryModel();
+      int[][] newMatrix = model.loadGameState(matrix, file);
+      matrix.repaintMatrix(newMatrix);
+      panel.repaint();
       System.out.println("Send file to HistoryBoard");
     }
+
+    //panel.repaint();
   }
 
   /**
