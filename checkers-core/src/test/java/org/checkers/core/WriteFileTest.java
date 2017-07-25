@@ -18,7 +18,7 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       e.printStackTrace();
+       System.out.println(e.getMessage());
      }
 
      WriteFile writeFile = new WriteFile(file);
@@ -43,7 +43,7 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       e.printStackTrace();
+       System.out.println(e.getMessage());
      }
 
      WriteFile writeFile = new WriteFile(file);
@@ -70,7 +70,7 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       e.printStackTrace();
+       System.out.println(e.getMessage());
      }
 
      WriteFile writeFile = new WriteFile(file);
