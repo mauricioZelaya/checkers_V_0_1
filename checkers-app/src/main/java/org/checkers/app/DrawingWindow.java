@@ -60,7 +60,6 @@ public class DrawingWindow extends JFrame {
 
         playerController = new PlayerController(playerOne, playerTwo, playerView);
 
-
         setJMenuBar(menuBar.getMenuBar());
 
         add(drawingPanel, BorderLayout.CENTER);

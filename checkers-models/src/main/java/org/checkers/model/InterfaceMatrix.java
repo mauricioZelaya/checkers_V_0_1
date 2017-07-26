@@ -22,11 +22,6 @@ public interface InterfaceMatrix extends InterfaceObservable {
   public void setMatrix(int newMatrix[][]);
 
   /**
-   * Sets the new state of the internal matrix array in base to state saved in a file
-   * @param newMatrix new matrix read from a file
-   */
-  public void repaintMatrix(int[][] newMatrix);
-  /**
    * This method retuns the matrix array of board states as an int matrix.
    */
   public int[][] getMatrix();
@@ -46,13 +41,25 @@ public interface InterfaceMatrix extends InterfaceObservable {
    * @toTile string with board coordinates of the form "B8", destination tile.
    * @capturePieceAtTile string with board coordinates of the form "B8", captured piece tile, can be empty string to indicate a no-capture move.
    */
-  public void moveGamePiece(String fromTile, String toTile, String capturePieceAtTile);
+  public void moveGamePiece(String fromTile, String toTile);
+
+  /**
+   *  Took this method out of Move in order to make it single responsability.
+   * @param capturePieceAtTile
+   */
+
+  public void captureGamePiece(String capturePieceAtTile);
 
   /**
    * This method provides the actual initialization of the matrix List with an initial default state. This way the call can trigger the
    * update of the observers. Setting it through the constructor didn't allow for the observer to be registered first.
    */
   public void initMatrixToDefaultState();
+
+  /**
+   * Initializes the Matrix to an empty state.
+   */
+  public void initMatrixToEmptyBoard();
 
   /**
    * This method returns the coordinates of the Tile in which a mouse's XY fall in. Instead of an Array scan it gets the Column/Row where the XY belong.
@@ -74,5 +81,5 @@ public interface InterfaceMatrix extends InterfaceObservable {
    */
   public Boolean hasSelectedPiece();
 
-  public void printMatrix();
+  public int countPlayerGamePieces(int player);
 }

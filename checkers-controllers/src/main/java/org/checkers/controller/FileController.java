@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
 
 import javax.swing.JPanel;
 
@@ -18,17 +19,17 @@ import org.checkers.view.util.MenuItem;
  * FileController will listen all requests from MenuBar view. It will ask to a model for data in
  * order to send them to proper view or another model.
  */
-public class FileController implements ActionListener {
+public class FileController extends Observable implements ActionListener {
 
   private final MenuBar menuBar;
-  private final InterfaceMatrix matrix;
+  private InterfaceMatrix matrix;
   private final JPanel panel;
 
   /**
    * Contructor of FileController class. It requires a MenuBar view to be initialized.
    * @param menuBar  The MenuBar view
    */
-  public FileController(final JPanel panel, MenuBar menuBar, final InterfaceMatrix matrix) {
+  public FileController(final JPanel panel, MenuBar menuBar, InterfaceMatrix matrix) {
     this.menuBar = menuBar;
     this.matrix = matrix;
     this.panel = panel;
@@ -75,8 +76,9 @@ public class FileController implements ActionListener {
   protected void newGame() {
     boolean result = DialogFactory.confirmMsg(MenuItem.FILE_NEW_GAME);
     if (result) {
-      // Replace following line with correct behaviour
-      System.out.println("Notify to Board in order to start a new game");
+       matrix.initMatrixToDefaultState();
+       panel.repaint();
+       System.out.println("Notify to Board in order to start a new game");
     }
   }
 
@@ -116,7 +118,8 @@ public class FileController implements ActionListener {
     if (file != null) {
       HistoryModel model = new HistoryModel();
       int[][] newMatrix = model.loadGameState(matrix, file);
-      matrix.repaintMatrix(newMatrix);
+
+      matrix.setMatrix(newMatrix);
       panel.repaint();
       System.out.println("Send file to HistoryBoard");
     }

@@ -75,7 +75,7 @@ public class MatrixTest
         matrix.initMatrixToDefaultState();
         assertEquals(1, matrix.getValueAtCoordinates("A3"));
         assertEquals(0, matrix.getValueAtCoordinates("B4"));
-        matrix.moveGamePiece("A3", "B4", "");
+        matrix.moveGamePiece("A3", "B4");
         assertEquals(0, matrix.getValueAtCoordinates("A3"));
         assertEquals(1, matrix.getValueAtCoordinates("B4"));
     }
@@ -87,8 +87,9 @@ public class MatrixTest
         assertEquals(2, matrix.getValueAtCoordinates("B6"));
         assertEquals(0, matrix.getValueAtCoordinates("B4"));
         assertEquals(0, matrix.getValueAtCoordinates("C5"));
-        matrix.moveGamePiece("B6", "B4", "");
-        matrix.moveGamePiece("A3", "C5", "B4");
+        matrix.moveGamePiece("B6", "B4");//""
+        matrix.moveGamePiece("A3", "C5");//, "B4"
+        matrix.captureGamePiece("B4");
         assertEquals(0, matrix.getValueAtCoordinates("A3"));
         assertEquals(0, matrix.getValueAtCoordinates("B6"));
         assertEquals(0, matrix.getValueAtCoordinates("B4"));
