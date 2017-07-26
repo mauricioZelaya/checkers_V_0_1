@@ -54,7 +54,7 @@ public class WriteFile {
    *
    * @param file recive the file
    */
-  public void clearFile(File file) {
+  public void clearFile() {
     FileWriter writer;
     PrintWriter line;
 

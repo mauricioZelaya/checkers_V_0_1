@@ -3,6 +3,9 @@ package org.checkers.view;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Observer;
+
+import org.checkers.model.InterfaceMatrix;
 
 /**
  * Write a description of class DrawingPanel here.
@@ -12,24 +15,16 @@ import java.awt.Graphics;
  */
 public class DrawingPanel extends JPanel {
 
-    private int[][] boardTest = {{9, 2, 9, 2, 9, 2, 9, 2},
-            {2, 9, 2, 9, 2, 9, 2, 9},
-            {9, 2, 9, 2, 9, 2, 9, 2},
-            {0, 9, 0, 9, 0, 9, 0, 9},
-            {9, 0, 9, 0, 9, 0, 9, 0},
-            {1, 9, 1, 9, 1, 9, 1, 9},
-            {9, 1, 9, 1, 9, 1, 9, 1},
-            {1, 9, 1, 9, 1, 9, 1, 9}};
+    private static final long serialVersionUID = -5505243596773486698L;
+    private final InterfaceBoard board;
 
-    private Board board;
-    private int xLast=0;
-    private int yLast=0;
-    private int moveCycle = 0;
-
-    public DrawingPanel(){
+    public DrawingPanel(InterfaceMatrix matrix){
         setBackground(Color.GRAY);
-        board = new Board(50, 50, 50, 8);
-        board.placePieces(boardTest);
+        board = new Board(50, 50);
+        matrix.addObserver((Observer) board);
+        matrix.initMatrixToDefaultState();
+
+        repaint();
     }
 
     @Override

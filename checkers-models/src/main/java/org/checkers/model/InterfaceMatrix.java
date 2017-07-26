@@ -22,6 +22,11 @@ public interface InterfaceMatrix extends InterfaceObservable {
   public void setMatrix(int newMatrix[][]);
 
   /**
+   * Sets the new state of the internal matrix array in base to state saved in a file
+   * @param newMatrix new matrix read from a file
+   */
+  public void repaintMatrix(int[][] newMatrix);
+  /**
    * This method retuns the matrix array of board states as an int matrix.
    */
   public int[][] getMatrix();
@@ -68,4 +73,6 @@ public interface InterfaceMatrix extends InterfaceObservable {
    *
    */
   public Boolean hasSelectedPiece();
+
+  public void printMatrix();
 }

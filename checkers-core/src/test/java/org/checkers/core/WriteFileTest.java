@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
@@ -18,11 +19,11 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       System.out.println(e.getMessage());
+       System.out.println(Arrays.toString(e.getStackTrace()));
      }
 
      WriteFile writeFile = new WriteFile(file);
-     writeFile.clearFile(file);
+     writeFile.clearFile();
      writeFile.saveHistory(inputData);
 
      ReadFile readfile = new ReadFile();
@@ -43,11 +44,11 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       System.out.println(e.getMessage());
+       System.out.println(Arrays.toString(e.getStackTrace()));
      }
 
      WriteFile writeFile = new WriteFile(file);
-     writeFile.clearFile(file);
+     writeFile.clearFile();
      writeFile.saveHistory(inputData1);
      writeFile.saveHistory(inputData2);
 
@@ -70,13 +71,13 @@ public class WriteFileTest {
      try {
        file.createNewFile();
      } catch (IOException e) {
-       System.out.println(e.getMessage());
+       System.out.println(Arrays.toString(e.getStackTrace()));
      }
 
      WriteFile writeFile = new WriteFile(file);
      writeFile.saveHistory(inputData1);
 
-     writeFile.clearFile(file);
+     writeFile.clearFile();
 
      ReadFile readfile = new ReadFile();
      List<String> strings = readfile.ReadFiles(file);

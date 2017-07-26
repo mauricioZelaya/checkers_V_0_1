@@ -1,10 +1,9 @@
 package org.checkers.app;
 
-import javax.swing.*;
-
+import javax.swing.JFrame;
 
 public class Checkers {
-  public static void main(String args[]) {
+  public static void main(String... args) {
     DrawingWindow window = new DrawingWindow("Checkers Game v0.1");
     window.setSize(800, 600);
 

@@ -12,6 +12,7 @@ import org.checkers.model.Player;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.io.File;
 
 /**
  * Updated by Kenneth on 7/11/2017.
@@ -26,13 +27,15 @@ public class DrawingWindow extends JFrame {
     /**
      * Creation of the Drawing Panel (The board)
      */
-    private DrawingPanel panel = new DrawingPanel();
+    private DrawingPanel drawingPanel;
     private MenuBar menuBar;
 
     /**
      * Creation of the controller
      */
-    private PlayerController miPlayerController;
+    private FileController fileController;
+
+    private PlayerController playerController;
 
     /**
      * Drawing window construction.
@@ -42,20 +45,25 @@ public class DrawingWindow extends JFrame {
     public DrawingWindow(final String title) {
         super(title);
         setLayout(new BorderLayout());
+
         matrix = new Matrix();
 
-        movementGestor = new MovementGestor(panel, matrix);
-
-        Player miPlayerOne = new Player(1);
-        Player miPlayerTwo = new Player(2);
-        PlayerView newView = new PlayerView();
-        miPlayerController = new PlayerController(miPlayerOne, miPlayerTwo, newView);
-
         menuBar = new MenuBar();
-        setJMenuBar(menuBar.getMenuBar());
-        add(panel, BorderLayout.CENTER);
-        add(newView, BorderLayout.EAST);
+        drawingPanel = new DrawingPanel(matrix);
 
-        FileController controller = new FileController(menuBar);
+        fileController = new FileController(drawingPanel, menuBar, matrix);
+        movementGestor = new MovementGestor(drawingPanel, matrix);
+
+        Player playerOne = new Player(1);
+        Player playerTwo = new Player(2);
+        PlayerView playerView = new PlayerView();
+
+        playerController = new PlayerController(playerOne, playerTwo, playerView);
+
+
+        setJMenuBar(menuBar.getMenuBar());
+
+        add(drawingPanel, BorderLayout.CENTER);
+        add(playerView, BorderLayout.EAST);
     }
 }
