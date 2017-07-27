@@ -20,8 +20,8 @@ public class Movement {
      * @param newMouseY has the mouse Y value.
      */
     public void selectPiece(final InterfaceMatrix matrix, final int newMouseX, final int newMouseY) {
-        this.mouseX = newMouseX;
-        this.mouseY = newMouseY;
+        mouseX = newMouseX;
+        mouseY = newMouseY;
 
         selectGamePiece(matrix);
     }
@@ -34,13 +34,13 @@ public class Movement {
      * @param newMouseY has the mouse Y value.
      */
     public void movePiece(final InterfaceMatrix matrix, final int newMouseX, final int newMouseY) {
-        this.mouseX = newMouseX;
-        this.mouseY = newMouseY;
+        mouseX = newMouseX;
+        mouseY = newMouseY;
 
         selectedDestinationTile(matrix);
 
         if (!fromXY.equals(toXY) && !toXY.equals("")) {
-            matrix.moveGamePiece(fromXY, toXY, "");
+            matrix.moveGamePiece(fromXY, toXY);
         }
 
         matrix.toggleSelectedGamePiece(toXY);
