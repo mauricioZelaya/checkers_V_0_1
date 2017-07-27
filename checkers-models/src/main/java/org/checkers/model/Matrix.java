@@ -214,6 +214,7 @@ public class Matrix extends Observable implements InterfaceMatrix {
         System.out.println();
       }
     }
+    System.out.println();
   }
 }
 

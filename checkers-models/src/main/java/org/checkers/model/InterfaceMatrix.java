@@ -82,4 +82,6 @@ public interface InterfaceMatrix extends InterfaceObservable {
   public Boolean hasSelectedPiece();
 
   public int countPlayerGamePieces(int player);
+
+  public void printMatrix();
 }
