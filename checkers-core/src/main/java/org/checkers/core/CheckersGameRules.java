@@ -37,8 +37,8 @@ public class CheckersGameRules implements IBoardGamesRules {
     }
 
     @Override
-    public boolean killOpponent(int initRow, int initCol, int [][] matrix) {
-        return chipInFront(initRow, initCol, matrix);// && (isValidTile(matrix[initRow - 2][initCol + 2]) || isValidTile(matrix[initRow - 2][initCol - 2]));
+    public boolean killOpponent(int initRow, int initCol, int matrix[][]) {
+        return chipInFront(initRow, initCol, matrix) && (isValidTile(matrix[initRow + 2][initCol + 2]) || isValidTile(matrix[initRow + 2][initCol - 2]));
     }
 
     @Override
@@ -62,27 +62,17 @@ public class CheckersGameRules implements IBoardGamesRules {
         return playerTurn == 1;
     }
 
-    private boolean chipInFront(int initRow, int initCol, int [][]matrix) {
-        int myPlayer = matrix[initRow+1][initCol+1];
-      System.out.println(myPlayer);
-        if (playerDirection(myPlayer)) {
-          if (myPlayer == 1) {
+    private boolean chipInFront(int initRow, int initCol, int matrix[][]) {
+        int myPlayer = matrix[initRow][initCol];
+        if (myPlayer == 1) {
             return (matrix[initRow - 1][initCol + 1] == 2) || (matrix[initRow - 1][initCol - 1] == 2);
-          }
-        }
-        else {
-          if (myPlayer == 2) {
+        } else if (myPlayer == 2) {
             return (matrix[initRow + 1][initCol + 1] == 1) || (matrix[initRow + 1][initCol - 1] == 1);
-          }
         }
         return false;
     }
 
-  private boolean playerDirection(int myPlayer) {
-      return myPlayer==1;
-  }
-
-  /**
+    /**
      * @param initRow - initial row where chip is situated
      * @param endRow  - final row where chip wants to go
      * @return boolean value according the evaluation
