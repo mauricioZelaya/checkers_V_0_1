@@ -1,34 +1,31 @@
 package org.checkers.model;
 
 
-public class TimerModel implements Runnable {
+import java.util.Observable;
+
+public class TimerModel extends Observable implements Runnable {
   protected Integer hours;
   protected Integer minutes;
   protected Integer seconds;
-  protected Integer miliseconds;
 
-  protected String time;
+  protected Thread thread;
 
   protected boolean isRunning;
-
-  public TimerModel() {
-    initTimer();
-  }
 
   public void initTimer() {
     hours = 0;
     minutes = 0;
     seconds = 0;
-    miliseconds = 0;
     isRunning = true;
-    time = "";
+    thread = new Thread(this);
+    thread.start();
   }
 
   @Override
   public void run() {
     try {
       while(isRunning) {
-        Thread.sleep(4);
+        Thread.sleep(1000);
         incrementTime();
         updateStringTime();
       }
@@ -38,12 +35,7 @@ public class TimerModel implements Runnable {
   }
 
   private void incrementTime() {
-    miliseconds += 4;
-
-    if (miliseconds == 1000) {
-      miliseconds = 0;
-      seconds++;
-    }
+    seconds++;
 
     if (seconds == 60) {
       seconds = 0;
@@ -61,7 +53,9 @@ public class TimerModel implements Runnable {
     String minute = minutes < 10 ? "0" + minutes : String.valueOf(minutes);
     String second = seconds < 10 ? "0" + seconds : String.valueOf(seconds);
 
-    time = hour + ":" + minute + ":" + second;
-  }
+    String time = hour + ":" + minute + ":" + second;
 
+    setChanged();
+    notifyObservers(time);
+  }
 }

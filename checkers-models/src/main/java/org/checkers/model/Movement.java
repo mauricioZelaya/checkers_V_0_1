@@ -40,7 +40,7 @@ public class Movement {
         selectedDestinationTile(matrix);
 
         if (!fromXY.equals(toXY) && !toXY.equals("")) {
-            matrix.moveGamePiece(fromXY, toXY, "");
+            matrix.moveGamePiece(fromXY, toXY);
         }
 
         matrix.toggleSelectedGamePiece(toXY);
