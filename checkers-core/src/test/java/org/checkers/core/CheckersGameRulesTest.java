@@ -84,12 +84,13 @@ public class CheckersGameRulesTest {
 
     @Test
     public void aChipIsEatableByOpponent(){
+        int player = 1;
         row = 5;
         col = 2;
         firstMatrix[5][2] = 1;
         firstMatrix[4][3] = 2;
         firstMatrix[3][4] = 0;
-        assertTrue(checkerGame.killOpponent(row, col, firstMatrix));
+        assertTrue(checkerGame.killOpponent(row, col, firstMatrix, player));
     }
 
     @Test
