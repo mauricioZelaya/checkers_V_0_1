@@ -24,15 +24,17 @@ public class FileController extends Observable implements ActionListener {
   private final MenuBar menuBar;
   private InterfaceMatrix matrix;
   private final JPanel panel;
+  private final HistoryModel historyModel;
 
   /**
    * Contructor of FileController class. It requires a MenuBar view to be initialized.
    * @param menuBar  The MenuBar view
    */
-  public FileController(final JPanel panel, MenuBar menuBar, InterfaceMatrix matrix) {
+  public FileController(final JPanel panel, MenuBar menuBar, InterfaceMatrix matrix, HistoryModel history) {
     this.menuBar = menuBar;
     this.matrix = matrix;
     this.panel = panel;
+    historyModel = history;
     addListeners();
   }
 
@@ -89,11 +91,10 @@ public class FileController extends Observable implements ActionListener {
   protected void saveGame() {
     File file = FileChooserFactory.getFile(MenuItem.FILE_SAVE_GAME);
     if (file != null) {
-      HistoryModel model = new HistoryModel();
-      model.clearExistFile(file);
-      model.saveGameState(matrix, file);
-      System.out.println("Send file to HistoryBoard");
+      historyModel.clearExistFile(file);
+      historyModel.saveGameState(matrix, file);
     }
+    /*
     if(!file.exists())
     {
       try {
@@ -106,6 +107,7 @@ public class FileController extends Observable implements ActionListener {
         System.err.print(e.getMessage());
       }
     }
+    */
   }
 
   /**
@@ -116,15 +118,11 @@ public class FileController extends Observable implements ActionListener {
     File file = FileChooserFactory.getFile(MenuItem.FILE_LOAD_GAME);
 
     if (file != null) {
-      HistoryModel model = new HistoryModel();
-      int[][] newMatrix = model.loadGameState(matrix, file);
+      int[][] newMatrix = historyModel.loadGameState(matrix, file);
 
       matrix.setMatrix(newMatrix);
       panel.repaint();
-      System.out.println("Send file to HistoryBoard");
     }
-
-    //panel.repaint();
   }
 
   /**
@@ -134,8 +132,8 @@ public class FileController extends Observable implements ActionListener {
   protected void saveReplay() {
     File file = FileChooserFactory.getFile(MenuItem.FILE_SAVE_REPLAY);
     if (file != null) {
-      // Replace following line with correct behaviour
-      System.out.println("Send file to HistoryBoard");
+      historyModel.clearExistFile(file);
+      historyModel.saveGameReplay(file);
     }
   }
 
@@ -146,8 +144,9 @@ public class FileController extends Observable implements ActionListener {
   protected void loadReplay() {
     File file = FileChooserFactory.getFile(MenuItem.FILE_LOAD_REPLAY);
     if (file != null) {
-      // Replace following line with correct behaviour
-      System.out.println("Send file to HistoryBoard");
+      matrix.initMatrixToDefaultState();
+      panel.repaint();
+      historyModel.loadGameReplay(file);
     }
   }
 

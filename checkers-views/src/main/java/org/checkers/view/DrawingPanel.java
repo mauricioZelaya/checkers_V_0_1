@@ -3,6 +3,7 @@ package org.checkers.view;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Observable;
 import java.util.Observer;
 
 import org.checkers.model.InterfaceMatrix;
@@ -13,17 +14,14 @@ import org.checkers.model.InterfaceMatrix;
  * @author not known (the owner should update it).
  * Updated by Susana on 7/20/2017.
  */
-public class DrawingPanel extends JPanel {
+public class DrawingPanel extends JPanel implements Observer{
 
     private static final long serialVersionUID = -5505243596773486698L;
     private final InterfaceBoard board;
 
-    public DrawingPanel(InterfaceMatrix matrix){
+    public DrawingPanel(InterfaceBoard board){
         setBackground(Color.GRAY);
-        board = new Board(50, 50);
-        matrix.addObserver((Observer) board);
-        matrix.initMatrixToDefaultState();
-
+        this.board = board;
         repaint();
     }
 
@@ -31,5 +29,11 @@ public class DrawingPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         board.drawShape(g);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        board.placePieces((int[][])arg);
+        this.repaint();
     }
 }

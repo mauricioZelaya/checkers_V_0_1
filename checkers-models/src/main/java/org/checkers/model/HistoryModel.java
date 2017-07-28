@@ -3,6 +3,8 @@ package org.checkers.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Observable;
 
 import org.checkers.core.ReadFile;
 import org.checkers.core.WriteFile;
@@ -10,9 +12,10 @@ import org.checkers.core.WriteFile;
 /**
  * This class allow save the movements on a List of strings
  */
-public class HistoryModel {
+public class HistoryModel extends Observable {
 
-  private final List<String> history;
+  private List<String> history;
+  private ListIterator<String> historyIterator;
   private WriteFile writeFile;
 
   public HistoryModel() {
@@ -69,6 +72,43 @@ public class HistoryModel {
     ReadFile read = new ReadFile();
     List<String> loadFileRows = read.ReadFiles(file);
     return read.getLoadFile(loadFileRows);
+  }
+
+  /**
+   * All movements will be written on selected file
+   */
+  public void saveGameReplay(File file) {
+    writeFile = new WriteFile(file);
+    for(String row : history){
+      writeFile.saveHistory(row);
+    }
+  }
+
+  /**
+   * Recover all movements from a file
+   */
+  public void loadGameReplay(File file) {
+    ReadFile read = new ReadFile();
+    history.clear();
+    history = read.ReadFiles(file);
+    historyIterator = history.listIterator();
+    setChanged();
+    notifyObservers(true);
+  }
+
+  /**
+   * Returns a movement into a list, this method will look for a movement into history through
+   * parameter position and the movement will be splitted on strings.
+   */
+  public String getFordwardMovement(){
+    if(historyIterator.hasNext()) {
+      return historyIterator.next();
+    }
+    return "None";
+  }
+
+  public boolean historyHasMovements(){
+    return historyIterator.hasNext();
   }
 
 }

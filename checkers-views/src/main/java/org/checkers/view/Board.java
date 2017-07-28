@@ -19,7 +19,7 @@ import java.util.Observable;
  * @author (Leonardo Antezana)
  * @version (July 2017)
  */
-public class Board implements Observer, InterfaceBoard {
+public class Board implements InterfaceBoard {
    private List<Tile> tiles;
    private List<AbstractShape> labels;
    private int xOrigin;
@@ -31,16 +31,8 @@ public class Board implements Observer, InterfaceBoard {
    private final Color cPlayer2 = Color.gray;
 
    /**
-    * Required method by the Observer interface. Triggers the update of the board with the states on the matrix passed as argument.
+    * Constructor that accepts the number of tiles by side and tileWidth in pixels.
     */
-   @Override
-   public void update(Observable o, Object arg) {
-       placePieces((int[][])arg);
-    }
-
-    /**
-     * Constructor that accepts the number of tiles by side and tileWidth in pixels.
-     */
    public Board(int xOrigin, int yOrigin, int tileWidth, int nTileSide) {
        this.tileWidth = tileWidth;
        this.nTileSide = nTileSide;
@@ -102,7 +94,8 @@ public class Board implements Observer, InterfaceBoard {
     * Using the "matrix" parameter this method fills an empty board with GamePieces in the right coordinates.
     * It will first clear the board of any gamepiece (update for better MVC).
     */
-   public void placePieces(int matrix[][]) {
+
+   public void placePieces(int[]... matrix) {
         Tile tile;
         int matrixValue;
         Boolean selectedPiece = false;

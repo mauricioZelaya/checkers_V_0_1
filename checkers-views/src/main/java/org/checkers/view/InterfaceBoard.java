@@ -14,4 +14,6 @@ public interface InterfaceBoard {
      */
 
     public void drawShape(Graphics g);
+
+    public void placePieces(int[]... matrix);
 }

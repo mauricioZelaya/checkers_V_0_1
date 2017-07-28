@@ -17,9 +17,11 @@ public class Movement {
     private int mouseY;
 
     private IBoardGamesRules rules;
+    private HistoryModel historyModel;
 
-    public Movement(){
+    public Movement(HistoryModel historyModel){
         rules = new CheckersGameRules();
+        this.historyModel = historyModel;
     }
 
     /**
@@ -55,6 +57,9 @@ public class Movement {
             if(rules.killOpponent(Utils.getRow(fromXY)-1 ,Utils.getColumn(fromXY)-1, matrix.getMatrix(), player)){
                 String whoDied = whoDied(fromXY, toXY);
                 matrix.captureGamePiece(whoDied);
+                saveMovementToHistory(whoDied);
+            } else {
+                saveMovementToHistory("");
             }
         }
 
@@ -120,5 +125,15 @@ public class Movement {
         fromXY = "";
         toXY = "";
         getCoordinate = 0;
+    }
+
+    /**
+     * Private metod to save movements into a list in HistoryMovement
+     */
+    private void saveMovementToHistory(String whoDied) {
+        String playerName = player == 1 || player == 3 ? "P1" : "P2";
+        String movement = playerName + "," + fromXY + "," + toXY;
+        movement = whoDied.isEmpty() ? movement : movement + "," + whoDied;
+        historyModel.addMovement(movement);
     }
 }

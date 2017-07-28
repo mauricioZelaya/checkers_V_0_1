@@ -1,5 +1,6 @@
 package org.checkers.controller;
 
+import org.checkers.model.HistoryModel;
 import org.checkers.model.InterfaceMatrix;
 import org.checkers.model.Movement;
 
@@ -24,10 +25,10 @@ public class MovementGestor extends MouseAdapter {
      * @param newPanel  an instance of {@link JPanel}.
      * @param newMatrix an instance of {@link InterfaceMatrix}.
      */
-    public MovementGestor(final JPanel newPanel, final InterfaceMatrix newMatrix) {
+    public MovementGestor(final JPanel newPanel, final InterfaceMatrix newMatrix, final HistoryModel historyModel) {
         this.panel = newPanel;
         this.matrix = newMatrix;
-        movement = new Movement();
+        movement = new Movement(historyModel);
         newPanel.addMouseListener(this);
     }
 
@@ -43,6 +44,6 @@ public class MovementGestor extends MouseAdapter {
         } else {
             movement.selectPiece(matrix, event.getX(), event.getY());
         }
-        panel.repaint();
+        //panel.repaint();
     }
 }
